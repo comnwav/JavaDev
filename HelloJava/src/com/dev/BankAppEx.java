@@ -66,6 +66,36 @@ public class BankAppEx {
 	// 예금
 	public static void deposit() {
 		System.out.println("예금기능");
+		System.out.println("계좌번호>>");
+		String ano = scn.next();
+		System.out.println("예금액을 입력하세요");
+		int amt = scn.nextInt();
+		int checkCnt = 0; // 조회가 되었는지 체크하는 변수
+
+		for (int i = 1; i < banks.length; i++) {
+			if (banks[i] != null && banks[i].getAccNo().equals(ano)) {
+				// 계좌가 조회되었을 때 실행
+				checkCnt = 1;
+				int currAmt = banks[i].getMoney();
+				
+				// 예금액이 10만원을 초과하지 못하도록
+				if (currAmt + amt > 100000) {
+					checkCnt = 2;
+					break;
+				} else {
+					banks[i].setMoney(currAmt + amt); // 잔액 + 입금액
+					break;
+				}
+			}
+		}
+
+		if (checkCnt == 1) {
+			System.out.println("정상적으로 처리되었습니다.");
+		} else if (checkCnt == 2) {
+			System.out.println("한도액을 초과했습니다.");
+		} else {
+			System.out.println("당신의 계좌는 너굴맨이 처리했다구!");
+		}
 	}
 
 	// 출금

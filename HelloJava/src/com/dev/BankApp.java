@@ -8,7 +8,7 @@ public class BankApp {
 	private String accNme;
 	private int money;
 	
-	// 생성자
+	// 생성자 - 필드의 초기값을 지정
 	public BankApp(String accNo, String accNme, int money) {
 		this.accNo = accNo;
 		this.accNme = accNme;
