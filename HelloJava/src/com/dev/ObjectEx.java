@@ -7,19 +7,27 @@ import com.edu.Student;
 public class ObjectEx {
 
 	public static void main(String[] args) {
-		
-		Student s1 = new Student(100);
-		System.out.println(s1.getStudNo());
-		
-		Student s2 = new Student(101, "안뇽");
-		System.out.println(s2.getStudNo()+"-"+s2.getStudName());
-		
-		Student s3 = new Student(101, "서현일", 89, 29, 99);
-		System.out.println(s3.getStudName()+"의 국어점수는 "+s3.getKorScore()+" 그리고 수학점수는 "+s3.getMathScore());
-		
-		Scanner scn = new Scanner(System.in);
-		scn.close();
-		
-	}
 
+		Student s1 = new Student(101, "이유빈", 90, 80, 78);
+		Student s2 = new Student(102, "조수연", 78, 49, 75);
+		Student s3 = new Student(103, "권태현", 89, 29, 99);
+		Student s4 = new Student(104, "서현일", 70, 80, 90);
+		Student s5 = new Student(105, "최규완", 77, 82, 83);
+
+		Student[] st = { s1, s2, s3, s4, s5 };
+
+		Scanner scn = new Scanner(System.in);
+		// (System.in) > 입력 스트림, 입력이나 파일을 받을 수 있음
+		System.out.println("Plase insert name");
+		String schName = scn.next();
+
+//		System.out.println(s1.getStudName());
+		
+		for (int i = 0; i < st.length; i++) {
+			if ( st[i].getStudName().equals(schName)) {
+				System.out.println(st[i].getStudInfo());
+			}
+		}
+		scn.close();
+	}
 }
