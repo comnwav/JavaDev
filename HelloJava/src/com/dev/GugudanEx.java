@@ -1,6 +1,6 @@
 package com.dev;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class GugudanEx {
 
