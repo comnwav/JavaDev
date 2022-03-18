@@ -1,8 +1,37 @@
 package com.test;
 
-//ë¬¸ì œ3) ì •ìˆ˜í˜•ë°°ì—´ ì„ ì–¸í•˜ê³  ì‚¬ìš©ìë¡œ ì„¸ê°œì˜ ì •ìˆ˜ê°’ì„ ì…ë ¥ë°›ì•„ì„œ ë°°ì—´ì— ì €ì¥. ì œì¼ í°ê°’ì„ êµ¬í•˜ëŠ” ì½”ë“œë¥¼ ì‘ì„±.
+import java.util.Scanner;
+
+//¹®Á¦3) Á¤¼öÇü¹è¿­ ¼±¾ğÇÏ°í »ç¿ëÀÚ·Î ¼¼°³ÀÇ Á¤¼ö°ªÀ» ÀÔ·Â¹Ş¾Æ¼­ ¹è¿­¿¡ ÀúÀå. 
+//Á¦ÀÏ Å«°ªÀ» ±¸ÇÏ´Â ÄÚµå¸¦ ÀÛ¼º.
 public class Exam03 {
 	public static void main(String[] args) {
+
+		Scanner scn = new Scanner(System.in);
+
+		int[] ary = new int[3];
+		
+		System.out.println("Please insert first value");
+		ary[0] = scn.nextInt();
+
+		System.out.println("Please insert second value");
+		ary[1] = scn.nextInt();
+
+		System.out.println("Please insert third value");
+		ary[2] = scn.nextInt();
+
+		int max = ary[0];
+
+		for (int i = 1; i < ary.length; i++) {
+			if (ary[i] > max) {
+				max = ary[i];
+			}
+			
+		}
+		
+		System.out.println("Max value is " + max);
+
+		scn.close();
 
 	}
 }

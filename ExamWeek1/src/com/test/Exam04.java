@@ -1,9 +1,30 @@
 package com.test;
 
-//ë¬¸ì œ4) 1 ~ 6ê¹Œì§€ ì„ì˜ì˜ ì •ìˆ˜ë¥¼ ìƒì„±í•˜ëŠ” Math.random()ì„ ì‚¬ìš©í•˜ì—¬ ì‘ì„±í•˜ì„¸ìš”.
-//ìƒì„±ëœ ê°’ì„ ì •ìˆ˜ë°°ì—´(í¬ê¸° 5)ë¥¼ ì„ ì–¸ í›„ ê°’ì„ ì €ì¥ í›„ ê°€ì¥ í° ê°’ì„ êµ¬í•˜ëŠ” ì½”ë“œë¥¼ ì‘ì„±.
+//¹®Á¦4) 1 ~ 6±îÁö ÀÓÀÇÀÇ Á¤¼ö¸¦ »ı¼ºÇÏ´Â Math.random()À» »ç¿ëÇÏ¿© ÀÛ¼ºÇÏ¼¼¿ä.
+//»ı¼ºµÈ °ªÀ» Á¤¼ö¹è¿­(Å©±â 5)¸¦ ¼±¾ğ ÈÄ °ªÀ» ÀúÀå ÈÄ °¡Àå Å« °ªÀ» ±¸ÇÏ´Â ÄÚµå¸¦ ÀÛ¼º.
 public class Exam04 {
 	public static void main(String[] args) {
+
+		int[] ary = new int[5];
+		
+
+		for (int i = 0; i < ary.length; i++) {
+			ary[i] = ((int) (Math.random() * 6)) + 1;
+		}
+		
+		for (int k = 0; k < ary.length; k++) {
+			System.out.println("No." + (k+1) + " Random number" + " is " + ary[k]);
+		}
+		
+		int max = ary[0];
+		
+		for (int j = 1; j < ary.length; j++) {
+			if (ary[j] > max) {
+				max = ary[j];
+			}
+		}
+		
+		System.out.println("Max value is " + max);
 
 	}
 }

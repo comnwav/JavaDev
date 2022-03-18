@@ -1,10 +1,40 @@
 package com.test;
 
-// ë¬¸ì œ5) Bookí´ë˜ìŠ¤ë¥¼ ì„ ì–¸(í•„ë“œ:ì±…ì œëª©, ì €ì, ì¶œíŒì‚¬, ê¸ˆì•¡) 
-//      ìƒì„±ì(ì±…ì œëª©, ì €ì, ì¶œíŒì‚¬, ê¸ˆì•¡)ë¥¼ ì„ ì–¸ í›„ Scannerí´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ì‚¬ìš©ìì˜ ì…ë ¥ì„ í†µí•˜ì—¬ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•˜ê³  
-//      ì…ë ¥í•œ ë‚´ìš©ì„ ì±…ì œëª©, ì €ì, ì¶œíŒì‚¬, ê¸ˆì•¡ ì •ë³´ë¥¼ í™”ë©´ì— ì¶œë ¥í•˜ëŠ” ê¸°ëŠ¥ êµ¬í˜„.
-public class Exam05 {
-	public static void main(String[] args) {
+import java.util.Scanner;
 
+// ¹®Á¦5) BookÅ¬·¡½º¸¦ ¼±¾ğ(ÇÊµå:Ã¥Á¦¸ñ, ÀúÀÚ, ÃâÆÇ»ç, ±İ¾×) 
+//      »ı¼ºÀÚ(Ã¥Á¦¸ñ, ÀúÀÚ, ÃâÆÇ»ç, ±İ¾×)¸¦ ¼±¾ğ ÈÄ ScannerÅ¬·¡½º¸¦ »ç¿ëÇÏ¿© »ç¿ëÀÚÀÇ 
+// ÀÔ·ÂÀ» ÅëÇÏ¿© ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÏ°í 
+//      ÀÔ·ÂÇÑ ³»¿ëÀ» Ã¥Á¦¸ñ, ÀúÀÚ, ÃâÆÇ»ç, ±İ¾× Á¤º¸¸¦ È­¸é¿¡ Ãâ·ÂÇÏ´Â ±â´É ±¸Çö.
+public class Exam05 {
+	
+	static Scanner scn = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+		///////////////////////////////////////////////////////////////
+		// There is a problem with UTF-8 so please don't insert Korean word.
+        ///////////////////////////////////////////////////////////////
+
+		System.out.println("Please insert a name of book");
+		String nameB = scn.next();
+		
+		System.out.println("Please insert author of book");
+		String authB = scn.next();
+		
+		System.out.println("Please insert a publisher of book");
+		String pressB = scn.next();
+		
+		System.out.println("Please insert price of book");
+		int priceB = scn.nextInt();
+		
+		Book listB = new Book (nameB, authB, pressB, priceB);
+		
+		System.out.println("========================");
+		System.out.println("Name : " + listB.getName());
+		System.out.println("Author : " + listB.getAuth());
+		System.out.println("Publisher : " + listB.getPress());
+		System.out.println("Price : " + listB.getPrice());
+		System.out.println("========================");
 	}
 }

@@ -1,8 +1,37 @@
 package com.test;
 
-//ë¬¸ì œ2) ì •ìˆ˜í˜• ë³€ìˆ˜ n1, n2ë¥¼ ì„ ì–¸í•˜ê³  Scanner í´ë˜ìŠ¤ë¥¼ í†µí•˜ì—¬ ë‘ì •ìˆ˜ë¥¼ ì…ë ¥ë°›ì€ í›„ í°ìˆ˜ì—ì„œ ì‘ì€ ìˆ˜ë¥¼ ë‚˜ëˆˆ ê²°ê³¼ê°’ì„ ì†Œìˆ˜ì  ì²«ë²ˆì§¸ê¹Œì§€ êµ¬í•˜ëŠ” ê¸°ëŠ¥ ì‘ì„±. 
+import java.util.Scanner;
+
+//¹®Á¦2) Á¤¼öÇü º¯¼ö n1, n2¸¦ ¼±¾ğÇÏ°í Scanner Å¬·¡½º¸¦ ÅëÇÏ¿© 
+//µÎÁ¤¼ö¸¦ ÀÔ·Â¹ŞÀº ÈÄ Å«¼ö¿¡¼­ ÀÛÀº ¼ö¸¦ ³ª´« °á°ú°ªÀ» ¼Ò¼öÁ¡ Ã¹¹øÂ°±îÁö ±¸ÇÏ´Â ±â´É ÀÛ¼º. 
 public class Exam02 {
 	public static void main(String[] args) {
+
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Please insert first value");
+		int num1 = scn.nextInt();
+		System.out.println("Please insert second value");
+		int num2 = scn.nextInt();
+
+		double result;
+
+		if (num1 < num2) {
+			if (num1 != 0) {
+				result = num2 / num1;
+				System.out.printf("Result is %.1f", result);
+			} else {
+				System.out.println("It isn't available to divide by 0");
+			}
+		} else if (num1 > num2) {
+			if (num2 != 0) {
+				result = num1 / num2;
+				System.out.printf("Result is %.1f", result);
+			} else {
+				System.out.println("It isn't available to divide by 0");
+			}
+		}
+
+		scn.close();
 
 	}
 }

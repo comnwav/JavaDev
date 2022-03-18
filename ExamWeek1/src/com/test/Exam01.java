@@ -1,7 +1,28 @@
 package com.test;
 
-//ë¬¸ì œ1) ì •ìˆ˜í˜• ë³€ìˆ˜ num1, num2 ë¥¼ ì„ ì–¸í•˜ê³  ë‘ ìˆ˜ ì¤‘ì—ì„œ í° ìˆ˜ì—ì„œ ìž‘ì€ ìˆ˜ë¥¼ ëº€ ê²°ê³¼ë¥¼ ì €ìž¥í•˜ëŠ” ë³€ìˆ˜ result.
+import java.util.Scanner;
+
+//¹®Á¦1) Á¤¼öÇü º¯¼ö num1, num2 ¸¦ ¼±¾ðÇÏ°í µÎ ¼ö Áß¿¡¼­ Å« ¼ö¿¡¼­ ÀÛÀº ¼ö¸¦ »« °á°ú¸¦ ÀúÀåÇÏ´Â º¯¼ö result.
 public class Exam01 {
 	public static void main(String[] args) {
+		
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Please insert first value");
+		int num1 = scn.nextInt();
+		System.out.println("Please insert second value");
+		int num2 = scn.nextInt();
+		
+		int result;
+		
+		if (num1 >= num2) {
+			result = num1 - num2;
+			System.out.println("Difference is " + result);
+		} else {
+			result = num2 - num1;
+			System.out.println("Difference is " + result);
+		}
+		
+		scn.close();
+		
 	}
 }
