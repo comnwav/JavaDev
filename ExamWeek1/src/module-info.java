@@ -1,0 +1,2 @@
+module ExamWeek1 {
+}

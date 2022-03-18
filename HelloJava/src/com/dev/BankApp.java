@@ -1,21 +1,21 @@
 package com.dev;
 
-// BankApp(main method), Account(°èÁÂÁ¤º¸, ¿¹±İÁÖ, ÀÜ¾×)
+// BankApp(main method), Account(ê³„ì¢Œì •ë³´, ì˜ˆê¸ˆì£¼, ì”ì•¡)
 public class BankApp {
-	// °èÁÂÁ¤º¸, ¿¹±İÁÖ, ¿¹±İ¾×
+	// ê³„ì¢Œì •ë³´, ì˜ˆê¸ˆì£¼, ì˜ˆê¸ˆì•¡
 	// field.
 	private String accNo;
 	private String accNme;
 	private int money;
 	
-	// »ı¼ºÀÚ - ÇÊµåÀÇ ÃÊ±â°ªÀ» ÁöÁ¤
+	// ìƒì„±ì - í•„ë“œì˜ ì´ˆê¸°ê°’ì„ ì§€ì •
 	public BankApp(String accNo, String accNme, int money) {
 		this.accNo = accNo;
 		this.accNme = accNme;
 		this.money = money;
 	}
 	
-	// ¸Ş¼Òµå
+	// ë©”ì†Œë“œ
 	public String getAccNo() {
 		return accNo;
 	}

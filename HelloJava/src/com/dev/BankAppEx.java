@@ -168,29 +168,38 @@ public class BankAppEx {
 	// 5. 송금 - 송금자 sender, 송신자 recipient
 	public static void transfer() {
 		System.out.println("송금");
-		System.out.println("출금하실 계좌번호>>");
+		System.out.println("출금하실 계좌 번호>>");
 		String sendNo;
 		String reciNo;
 		int amt;
-		
+
 		while (true) {
 			sendNo = scn.next();
 			if (schAccNo(sendNo) != null) {
-				System.out.println("송금가능 잔액은"+schAccNo(sendNo).getMoney()+"원 입니다.");
+				System.out.println("송금가능 잔액은" + schAccNo(sendNo).getMoney() + "원 입니다.");
 				System.out.println("상대방의 계좌를 입력하세요");
 				reciNo = scn.next();
 				System.out.println("송금할 금액을 입력하세요");
-				amt = scn.nextInt();
-				schAccNo(reciNo).setMoney(schAccNo(reciNo).getMoney() + amt);
-				schAccNo(sendNo).setMoney(schAccNo(sendNo).getMoney() - amt);
-				System.out.println("송금이 완료되었습니다.");
+
+				while (true) {
+					amt = scn.nextInt();
+					if (schAccNo(sendNo).getMoney() < amt) {
+						System.out.println("출금액이 잔액보다 큽니다. 다시 입력하세요");
+					} else {
+						schAccNo(reciNo).setMoney(schAccNo(reciNo).getMoney() + amt);
+						schAccNo(sendNo).setMoney(schAccNo(sendNo).getMoney() - amt);
+						System.out.println("송금이 완료되었습니다.");
+						System.out.println("현재잔액은" + schAccNo(sendNo).getMoney() + "입니다.");
+						break;
+					}
+				}
 				break;
 			} else {
 				System.out.println("계좌번호를 잘못 입력하셨습니다. 다시 입력해주세요");
 			}
-			
+
 		}
-		
+
 	}
 
 	// 전체리스트 출력
@@ -210,8 +219,15 @@ public class BankAppEx {
 				return banks[i];
 				// BankApp 클래스를 리턴한다.
 			}
-
 		}
 		return null; // 반환 되는 값이 없다 -> null (모든 클래스에 대응되는 값, 모든 클래스의 초기값도 될 수 있다)
 	}
+
+	// 계좌유효성체크
+//	public static BankApp checkAccNo() {
+//		for (int i = 0; i < banks.length; i++) {
+//			
+//		}
+//	}
+
 }
