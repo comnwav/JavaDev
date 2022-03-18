@@ -2,7 +2,7 @@ package com.test;
 
 import java.util.Scanner;
 
-//¹®Á¦1) Á¤¼öÇü º¯¼ö num1, num2 ¸¦ ¼±¾ğÇÏ°í µÎ ¼ö Áß¿¡¼­ Å« ¼ö¿¡¼­ ÀÛÀº ¼ö¸¦ »« °á°ú¸¦ ÀúÀåÇÏ´Â º¯¼ö result.
+//ë¬¸ì œ1) ì •ìˆ˜í˜• ë³€ìˆ˜ num1, num2 ë¥¼ ì„ ì–¸í•˜ê³  ë‘ ìˆ˜ ì¤‘ì—ì„œ í° ìˆ˜ì—ì„œ ì‘ì€ ìˆ˜ë¥¼ ëº€ ê²°ê³¼ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜ result.
 public class Exam01 {
 	public static void main(String[] args) {
 		

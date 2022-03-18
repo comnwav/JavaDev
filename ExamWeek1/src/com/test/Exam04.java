@@ -1,7 +1,6 @@
 package com.test;
-
-//¹®Á¦4) 1 ~ 6±îÁö ÀÓÀÇÀÇ Á¤¼ö¸¦ »ý¼ºÇÏ´Â Math.random()À» »ç¿ëÇÏ¿© ÀÛ¼ºÇÏ¼¼¿ä.
-//»ý¼ºµÈ °ªÀ» Á¤¼ö¹è¿­(Å©±â 5)¸¦ ¼±¾ð ÈÄ °ªÀ» ÀúÀå ÈÄ °¡Àå Å« °ªÀ» ±¸ÇÏ´Â ÄÚµå¸¦ ÀÛ¼º.
+//ë¬¸ì œ4) 1 ~ 6ê¹Œì§€ ìž„ì˜ì˜ ì •ìˆ˜ë¥¼ ìƒì„±í•˜ëŠ” Math.random()ì„ ì‚¬ìš©í•˜ì—¬ ìž‘ì„±í•˜ì„¸ìš”.
+//ìƒì„±ëœ ê°’ì„ ì •ìˆ˜ë°°ì—´(í¬ê¸° 5)ë¥¼ ì„ ì–¸ í›„ ê°’ì„ ì €ìž¥ í›„ ê°€ìž¥ í° ê°’ì„ êµ¬í•˜ëŠ” ì½”ë“œë¥¼ ìž‘ì„±.
 public class Exam04 {
 	public static void main(String[] args) {
 

@@ -2,8 +2,6 @@ package com.test;
 
 import java.util.Scanner;
 
-//문제2) 정수형 변수 n1, n2를 선언하고 Scanner 클래스를 통하여 
-//두정수를 입력받은 후 큰수에서 작은 수를 나눈 결과값을 소수점 첫번째까지 구하는 기능 작성. 
 public class Exam02 {
 	public static void main(String[] args) {
 
@@ -17,14 +15,14 @@ public class Exam02 {
 
 		if (num1 < num2) {
 			if (num1 != 0) {
-				result = num2 / num1;
+				result = (double) num2 / num1;
 				System.out.printf("Result is %.1f", result);
 			} else {
 				System.out.println("It isn't available to divide by 0");
 			}
 		} else if (num1 > num2) {
 			if (num2 != 0) {
-				result = num1 / num2;
+				result = (double) num1 / num2;
 				System.out.printf("Result is %.1f", result);
 			} else {
 				System.out.println("It isn't available to divide by 0");
