@@ -2,18 +2,18 @@ package com.dev;
 
 import java.util.Scanner;
 
-// BankApp(main method), Account(怨꾩쥖踰덊샇,�삁湲덉＜,�옍�븸) 
-public class BankAppByPro {
+// BankApp(main method), Account(계좌번호,예금주,잔액) 
+public class BankApp {
 
-	static BankApp[] banks = new BankApp[100];
+	static Account[] banks = new Account[100];
 	static Scanner scn = new Scanner(System.in);
 
-	// 硫붾돱: 1.怨꾩쥖�깮�꽦(踰덊샇,�삁湲덉＜,�삁湲덉븸)
-	// 2.�삁湲�(踰덊샇,�삁湲덉븸) -> 理쒓퀬�삁湲덉븸 100,000�썝.
-	// 3.異쒓툑(踰덊샇,異쒓툑�븸) -> �옍�븸蹂대떎 �겙 湲덉븸 異쒓툑 紐삵븯�룄濡�.
-	// 4.�옍�븸議고쉶(踰덊샇)
-	// 5.醫낅즺.
-	// �삤�뒛�씠 �옄諛� 5�씪吏몄씤�뜲 ... �쟻�젅�븳 �봽濡쒓렇�옩�엯�땲�떎...
+	// 메뉴: 1.계좌생성(번호,예금주,예금액)
+	// 2.예금(번호,예금액) -> 최고예금액 100,000원.
+	// 3.출금(번호,출금액) -> 잔액보다 큰 금액 출금 못하도록.
+	// 4.잔액조회(번호)
+	// 5.종료.
+	// 오늘이 자바 5일째인데 ... 적절한 프로그램입니다...
 
 	public static void main(String[] args) {
 
@@ -30,7 +30,7 @@ public class BankAppByPro {
 			} else if (menu == 4) {
 				findAccountMoney();
 			} else if (menu == 5) {
-				System.out.println("�봽濡쒓렇�옩�쓣 醫낅즺�빀�땲�떎.");
+				System.out.println("프로그램을 종료합니다.");
 				break;
 			} else if (menu == 9) {
 				showList();
@@ -39,42 +39,42 @@ public class BankAppByPro {
 		System.out.println("=== End of Prog ===");
 	} // end of main()
 
-	// 硫붾돱異쒕젰 湲곕뒫.
+	// 메뉴출력 기능.
 	public static void printMenu() {
 		String menu = "=====================================================\r\n" //
-				+ "     1.怨꾩쥖�깮�꽦(踰덊샇,�삁湲덉＜,�삁湲덉븸)\r\n" //
-				+ "     2.�삁湲�(踰덊샇,�삁湲덉븸) -> 理쒓퀬�삁湲덉븸 100,000�썝.\r\n" //
-				+ "     3.異쒓툑(踰덊샇,異쒓툑�븸) -> �옍�븸蹂대떎 �겙 湲덉븸 異쒓툑 紐삵븯�룄濡�.\r\n" //
-				+ "     4.�옍�븸議고쉶(踰덊샇)\r\n" //
-				+ "     5.醫낅즺.\r\n" //
+				+ "     1.계좌생성(번호,예금주,예금액)\r\n" //
+				+ "     2.예금(번호,예금액) -> 최고예금액 100,000원.\r\n" //
+				+ "     3.출금(번호,출금액) -> 잔액보다 큰 금액 출금 못하도록.\r\n" //
+				+ "     4.잔액조회(번호)\r\n" //
+				+ "     5.종료.\r\n" //
 				+ "=====================================================\r\n"//
-				+ "�꽑�깮> ";
+				+ "선택> ";
 		System.out.print(menu);
 	}
 
-	// 怨꾩쥖�깮�꽦 硫붿냼�뱶.
+	// 계좌생성 메소드.
 	public static void createAccount() {
-		System.out.println("怨꾩쥖�깮�꽦湲곕뒫.");
+		System.out.println("계좌생성기능.");
 
 		String accNo;
 		while (true) {
-			System.out.print("怨꾩쥖踰덊샇�엯�젰>> ");
+			System.out.print("계좌번호입력>> ");
 			accNo = scn.next();
-			// 怨꾩쥖踰덊샇 �엳�뒗吏� 泥댄겕.
+			// 계좌번호 있는지 체크.
 			if (searchAccountNo(accNo) != null) {
-				System.out.println("�씠誘� �엳�뒗 怨꾩쥖踰덊샇�엯�땲�떎.");
+				System.out.println("이미 있는 계좌번호입니다.");
 				continue;
 			}
-			// �궗�슜媛��뒫�븳 怨꾩쥖踰덊샇媛� 留욎쑝硫� while 諛섎났臾몄쓣 踰쀬뼱�궃�떎.
+			// 사용가능한 계좌번호가 맞으면 while 반복문을 벗어난다.
 			break;
 		}
 
-		System.out.print("�삁湲덉＜�엯�젰>> ");
+		System.out.print("예금주입력>> ");
 		String accName = scn.next();
-		System.out.print("�삁湲덉븸�엯�젰>> ");
+		System.out.print("예금액입력>> ");
 		int accMoney = scn.nextInt();
 
-		BankApp accnt = new BankApp(accNo, accName, accMoney);
+		Account accnt = new Account(accNo, accName, accMoney);
 
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] == null) {
@@ -82,88 +82,88 @@ public class BankAppByPro {
 				break;
 			}
 		}
-		System.out.println("怨꾩쥖媛� �젙�긽�쟻�쑝濡� �깮�꽦�릺�뿀�뒿�땲�떎.");
+		System.out.println("계좌가 정상적으로 생성되었습니다.");
 
 	}
 
-	// �삁湲� 硫붿냼�뱶.
+	// 예금 메소드.
 	public static void deposit() {
-		System.out.println("�삁湲덇린�뒫.");
+		System.out.println("예금기능.");
 
-		System.out.print("怨꾩쥖踰덊샇>> ");
+		System.out.print("계좌번호>> ");
 		String ano = scn.next();
-		System.out.print("�삁湲덉븸 �엯�젰>> ");
+		System.out.print("예금액 입력>> ");
 		int amt = scn.nextInt();
-		int checkCnt = 0; // 議고쉶媛� �릱�뒗吏� 泥댄겕 �뿬遺� 蹂��닔.
+		int checkCnt = 0; // 조회가 됐는지 체크 여부 변수.
 
-		BankApp findAccount = searchAccountNo(ano);
+		Account findAccount = searchAccountNo(ano);
 		if (findAccount != null) {
-			checkCnt = 1; // 李얜뒗 議곌굔�뿉 留욌뒗 怨꾩쥖議댁옱.
+			checkCnt = 1; // 찾는 조건에 맞는 계좌존재.
 			int currAmt = findAccount.getMoney();
 
-			// �삁湲덉븸�씠 10留뚯썝�쓣 珥덇낵�븯吏� 紐삵븯�룄濡�..
+			// 예금액이 10만원을 초과하지 못하도록..
 			if (currAmt + amt > 100000) {
 				checkCnt = 2;
 			} else {
-				findAccount.setMoney(currAmt + amt); // �옍�븸 + �엯湲덉븸.
+				findAccount.setMoney(currAmt + amt); // 잔액 + 입금액.
 			}
 		}
 
 		if (checkCnt == 1) {
-			System.out.println("�젙�궘�쟻�쑝濡� 泥섎━�릺�뿀�뒿�땲�떎.");
+			System.out.println("정삭적으로 처리되었습니다.");
 		} else if (checkCnt == 2) {
-			System.out.println("�븳�룄�븸�쓣 珥덇낵�뻽�뒿�땲�떎.");
+			System.out.println("한도액을 초과했습니다.");
 		} else {
-			System.out.println("怨꾩쥖踰덊샇媛� �뾾�뒿�땲�떎.");
+			System.out.println("계좌번호가 없습니다.");
 		}
 
 	}
 
-	// 異쒓툑 硫붿냼�뱶.
+	// 출금 메소드.
 	public static void withdraw() {
-		System.out.println("異쒓툑湲곕뒫.");
-		System.out.print("怨꾩쥖踰덊샇>> ");
+		System.out.println("출금기능.");
+		System.out.print("계좌번호>> ");
 		String ano = scn.next();
-		System.out.print("�삁湲덉븸 �엯�젰>> ");
+		System.out.print("예금액 입력>> ");
 		int amt = scn.nextInt();
-		int checkCnt = 0; // 議고쉶媛� �릱�뒗吏� 泥댄겕 �뿬遺� 蹂��닔.
+		int checkCnt = 0; // 조회가 됐는지 체크 여부 변수.
 
 		Account findAccount = searchAccountNo(ano);
 		if (findAccount != null) {
 			checkCnt = 1;
 			int currAmt = findAccount.getMoney();
 
-			// �옍�븸�쓣 珥덇낵�빐�꽌 異쒓툑�쓣 紐삵븯�룄濡�..
+			// 잔액을 초과해서 출금을 못하도록..
 			if (currAmt < amt) {
 				checkCnt = 2;
 			} else {
-				findAccount.setMoney(currAmt - amt); // �옍�븸 - �엯湲덉븸.
+				findAccount.setMoney(currAmt - amt); // 잔액 - 입금액.
 			}
 		}
 
 		if (checkCnt == 1) {
-			System.out.println("�젙�궘�쟻�쑝濡� 泥섎━�릺�뿀�뒿�땲�떎.");
+			System.out.println("정삭적으로 처리되었습니다.");
 		} else if (checkCnt == 2) {
-			System.out.println("�옍�븸�쓣 珥덇낵�뻽�뒿�땲�떎.");
+			System.out.println("잔액을 초과했습니다.");
 		} else {
-			System.out.println("怨꾩쥖踰덊샇媛� �뾾�뒿�땲�떎.");
+			System.out.println("계좌번호가 없습니다.");
 		}
 	}
 
-	// �옍�븸議고쉶 硫붿냼�뱶.
+	// 잔액조회 메소드.
 	public static void findAccountMoney() {
-		System.out.println("議고쉶湲곕뒫.");
-		System.out.print("怨꾩쥖踰덊샇>> ");
+		System.out.println("조회기능.");
+		System.out.print("계좌번호>> ");
 		String ano = scn.next();
 		Account findAccount = searchAccountNo(ano);
 		if (findAccount == null) {
-			System.out.println("怨꾩쥖媛� 議댁옱�븯吏� �븡�뒿�땲�떎.");
+			System.out.println("계좌가 존재하지 않습니다.");
 			return;
 		}
-		System.out.println("�옍�븸: " + findAccount.getMoney());
+		System.out.println("잔액: " + findAccount.getMoney());
 	}
 
-	// �쟾泥대━�뒪�듃 異쒕젰.
+	// 전체리스트 출력.
 	public static void showList() {
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] != null) {
@@ -172,15 +172,15 @@ public class BankAppByPro {
 		}
 	}
 
-	// 怨꾩쥖踰덊샇瑜� �엯�젰�븯硫� 諛곗뿴(banks)�뿉�꽌 洹� 怨꾩쥖踰덊샇瑜� 諛섑솚 �뾾�쑝硫� null
-	// 100媛� 35媛� ���옣
+	// 계좌번호를 입력하면 배열(banks)에서 그 계좌번호를 반환 없으면 null
+	// 100개 35개 저장
 	public static Account searchAccountNo(String accNo) {
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] != null && banks[i].getAccNo().equals(accNo)) {
 				return banks[i];
 			}
 		}
-		return null; // �겢�옒�뒪 -> null(Student, Car,
+		return null; // 클래스 -> null(Student, Car,
 	}
 
 }

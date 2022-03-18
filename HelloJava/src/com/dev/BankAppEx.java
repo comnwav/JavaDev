@@ -101,6 +101,7 @@ public class BankAppEx {
 						break;
 					}
 				}
+				break;
 
 			} else {
 				System.out.println("계좌번호를 다시 입력하세요");
