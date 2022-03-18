@@ -47,7 +47,20 @@ public class BankAppEx {
 	public static void createAcc() {
 		System.out.println("계좌생성");
 		System.out.println("계좌번호입력>>");
-		String accNo = scn.next();
+		String accNo;
+
+		// 계좌번호 있는지 체크
+		while (true) {
+			accNo = scn.next();
+			if (schAccNo(accNo) != null) {
+				System.out.println("이미 존재하는 계좌번호 입니다.");
+				System.out.println("다시 입력하세요");
+			} else {
+				break;
+			}
+
+		}
+
 		System.out.println("예금주입력>>");
 		String accNme = scn.next();
 		System.out.println("예금액입력>>");
@@ -77,7 +90,7 @@ public class BankAppEx {
 				// 계좌가 조회되었을 때 실행
 				checkCnt = 1;
 				int currAmt = banks[i].getMoney();
-				
+
 				// 예금액이 10만원을 초과하지 못하도록
 				if (currAmt + amt > 100000) {
 					checkCnt = 2;
@@ -115,5 +128,18 @@ public class BankAppEx {
 				System.out.println(banks[i].toString());
 			}
 		}
+	}
+
+	// 계좌번호를 입력하면 배열(banks)에서 그 계좌번호를 반환 없으면 null
+	// 중복체크
+	public static BankApp schAccNo(String accNo) {
+		for (int i = 0; i < banks.length; i++) {
+			if (banks[i] != null && banks[i].getAccNo().equals(accNo)) {
+				return banks[i];
+				// BankApp 클래스를 리턴한다.
+			}
+
+		}
+		return null; // 반환 되는 값이 없다 -> null (모든 클래스에 대응되는 값, 모든 클래스의 초기값도 될 수 있다)
 	}
 }

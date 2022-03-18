@@ -15,6 +15,7 @@ public class BankApp {
 		this.money = money;
 	}
 	
+	// ¸Þ¼Òµå
 	public String getAccNo() {
 		return accNo;
 	}

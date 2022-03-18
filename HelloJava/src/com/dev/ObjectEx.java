@@ -1,4 +1,8 @@
 package com.dev;
+// 객체지향프로그램언어
+// 절차프로그램(데이터, 함수) > 객체(데이터, 기능(함수))
+// object(객체) > class(도면, 틀) > 인스턴스생성(초기화)
+// 학생(객체 object) > class student > instance(new student())
 
 import java.util.Scanner;
 
