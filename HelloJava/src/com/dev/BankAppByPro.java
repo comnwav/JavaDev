@@ -2,18 +2,18 @@ package com.dev;
 
 import java.util.Scanner;
 
-// BankApp(main method), Account(ê³„ì¢Œë²ˆí˜¸,ì˜ˆê¸ˆì£¼,ì”ì•¡) 
+// BankApp(main method), Account(°èÁÂ¹øÈ£,¿¹±İÁÖ,ÀÜ¾×) 
 public class BankApp {
 
 	static Account[] banks = new Account[100];
 	static Scanner scn = new Scanner(System.in);
 
-	// ë©”ë‰´: 1.ê³„ì¢Œìƒì„±(ë²ˆí˜¸,ì˜ˆê¸ˆì£¼,ì˜ˆê¸ˆì•¡)
-	// 2.ì˜ˆê¸ˆ(ë²ˆí˜¸,ì˜ˆê¸ˆì•¡) -> ìµœê³ ì˜ˆê¸ˆì•¡ 100,000ì›.
-	// 3.ì¶œê¸ˆ(ë²ˆí˜¸,ì¶œê¸ˆì•¡) -> ì”ì•¡ë³´ë‹¤ í° ê¸ˆì•¡ ì¶œê¸ˆ ëª»í•˜ë„ë¡.
-	// 4.ì”ì•¡ì¡°íšŒ(ë²ˆí˜¸)
-	// 5.ì¢…ë£Œ.
-	// ì˜¤ëŠ˜ì´ ìë°” 5ì¼ì§¸ì¸ë° ... ì ì ˆí•œ í”„ë¡œê·¸ë¨ì…ë‹ˆë‹¤...
+	// ¸Ş´º: 1.°èÁÂ»ı¼º(¹øÈ£,¿¹±İÁÖ,¿¹±İ¾×)
+	// 2.¿¹±İ(¹øÈ£,¿¹±İ¾×) -> ÃÖ°í¿¹±İ¾× 100,000¿ø.
+	// 3.Ãâ±İ(¹øÈ£,Ãâ±İ¾×) -> ÀÜ¾×º¸´Ù Å« ±İ¾× Ãâ±İ ¸øÇÏµµ·Ï.
+	// 4.ÀÜ¾×Á¶È¸(¹øÈ£)
+	// 5.Á¾·á.
+	// ¿À´ÃÀÌ ÀÚ¹Ù 5ÀÏÂ°ÀÎµ¥ ... ÀûÀıÇÑ ÇÁ·Î±×·¥ÀÔ´Ï´Ù...
 
 	public static void main(String[] args) {
 
@@ -30,7 +30,7 @@ public class BankApp {
 			} else if (menu == 4) {
 				findAccountMoney();
 			} else if (menu == 5) {
-				System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+				System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 				break;
 			} else if (menu == 9) {
 				showList();
@@ -39,39 +39,39 @@ public class BankApp {
 		System.out.println("=== End of Prog ===");
 	} // end of main()
 
-	// ë©”ë‰´ì¶œë ¥ ê¸°ëŠ¥.
+	// ¸Ş´ºÃâ·Â ±â´É.
 	public static void printMenu() {
 		String menu = "=====================================================\r\n" //
-				+ "     1.ê³„ì¢Œìƒì„±(ë²ˆí˜¸,ì˜ˆê¸ˆì£¼,ì˜ˆê¸ˆì•¡)\r\n" //
-				+ "     2.ì˜ˆê¸ˆ(ë²ˆí˜¸,ì˜ˆê¸ˆì•¡) -> ìµœê³ ì˜ˆê¸ˆì•¡ 100,000ì›.\r\n" //
-				+ "     3.ì¶œê¸ˆ(ë²ˆí˜¸,ì¶œê¸ˆì•¡) -> ì”ì•¡ë³´ë‹¤ í° ê¸ˆì•¡ ì¶œê¸ˆ ëª»í•˜ë„ë¡.\r\n" //
-				+ "     4.ì”ì•¡ì¡°íšŒ(ë²ˆí˜¸)\r\n" //
-				+ "     5.ì¢…ë£Œ.\r\n" //
+				+ "     1.°èÁÂ»ı¼º(¹øÈ£,¿¹±İÁÖ,¿¹±İ¾×)\r\n" //
+				+ "     2.¿¹±İ(¹øÈ£,¿¹±İ¾×) -> ÃÖ°í¿¹±İ¾× 100,000¿ø.\r\n" //
+				+ "     3.Ãâ±İ(¹øÈ£,Ãâ±İ¾×) -> ÀÜ¾×º¸´Ù Å« ±İ¾× Ãâ±İ ¸øÇÏµµ·Ï.\r\n" //
+				+ "     4.ÀÜ¾×Á¶È¸(¹øÈ£)\r\n" //
+				+ "     5.Á¾·á.\r\n" //
 				+ "=====================================================\r\n"//
-				+ "ì„ íƒ> ";
+				+ "¼±ÅÃ> ";
 		System.out.print(menu);
 	}
 
-	// ê³„ì¢Œìƒì„± ë©”ì†Œë“œ.
+	// °èÁÂ»ı¼º ¸Ş¼Òµå.
 	public static void createAccount() {
-		System.out.println("ê³„ì¢Œìƒì„±ê¸°ëŠ¥.");
+		System.out.println("°èÁÂ»ı¼º±â´É.");
 
 		String accNo;
 		while (true) {
-			System.out.print("ê³„ì¢Œë²ˆí˜¸ì…ë ¥>> ");
+			System.out.print("°èÁÂ¹øÈ£ÀÔ·Â>> ");
 			accNo = scn.next();
-			// ê³„ì¢Œë²ˆí˜¸ ìˆëŠ”ì§€ ì²´í¬.
+			// °èÁÂ¹øÈ£ ÀÖ´ÂÁö Ã¼Å©.
 			if (searchAccountNo(accNo) != null) {
-				System.out.println("ì´ë¯¸ ìˆëŠ” ê³„ì¢Œë²ˆí˜¸ì…ë‹ˆë‹¤.");
+				System.out.println("ÀÌ¹Ì ÀÖ´Â °èÁÂ¹øÈ£ÀÔ´Ï´Ù.");
 				continue;
 			}
-			// ì‚¬ìš©ê°€ëŠ¥í•œ ê³„ì¢Œë²ˆí˜¸ê°€ ë§ìœ¼ë©´ while ë°˜ë³µë¬¸ì„ ë²—ì–´ë‚œë‹¤.
+			// »ç¿ë°¡´ÉÇÑ °èÁÂ¹øÈ£°¡ ¸ÂÀ¸¸é while ¹İº¹¹®À» ¹ş¾î³­´Ù.
 			break;
 		}
 
-		System.out.print("ì˜ˆê¸ˆì£¼ì…ë ¥>> ");
+		System.out.print("¿¹±İÁÖÀÔ·Â>> ");
 		String accName = scn.next();
-		System.out.print("ì˜ˆê¸ˆì•¡ì…ë ¥>> ");
+		System.out.print("¿¹±İ¾×ÀÔ·Â>> ");
 		int accMoney = scn.nextInt();
 
 		Account accnt = new Account(accNo, accName, accMoney);
@@ -82,88 +82,88 @@ public class BankApp {
 				break;
 			}
 		}
-		System.out.println("ê³„ì¢Œê°€ ì •ìƒì ìœ¼ë¡œ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.");
+		System.out.println("°èÁÂ°¡ Á¤»óÀûÀ¸·Î »ı¼ºµÇ¾ú½À´Ï´Ù.");
 
 	}
 
-	// ì˜ˆê¸ˆ ë©”ì†Œë“œ.
+	// ¿¹±İ ¸Ş¼Òµå.
 	public static void deposit() {
-		System.out.println("ì˜ˆê¸ˆê¸°ëŠ¥.");
+		System.out.println("¿¹±İ±â´É.");
 
-		System.out.print("ê³„ì¢Œë²ˆí˜¸>> ");
+		System.out.print("°èÁÂ¹øÈ£>> ");
 		String ano = scn.next();
-		System.out.print("ì˜ˆê¸ˆì•¡ ì…ë ¥>> ");
+		System.out.print("¿¹±İ¾× ÀÔ·Â>> ");
 		int amt = scn.nextInt();
-		int checkCnt = 0; // ì¡°íšŒê°€ ëëŠ”ì§€ ì²´í¬ ì—¬ë¶€ ë³€ìˆ˜.
+		int checkCnt = 0; // Á¶È¸°¡ µÆ´ÂÁö Ã¼Å© ¿©ºÎ º¯¼ö.
 
 		Account findAccount = searchAccountNo(ano);
 		if (findAccount != null) {
-			checkCnt = 1; // ì°¾ëŠ” ì¡°ê±´ì— ë§ëŠ” ê³„ì¢Œì¡´ì¬.
+			checkCnt = 1; // Ã£´Â Á¶°Ç¿¡ ¸Â´Â °èÁÂÁ¸Àç.
 			int currAmt = findAccount.getMoney();
 
-			// ì˜ˆê¸ˆì•¡ì´ 10ë§Œì›ì„ ì´ˆê³¼í•˜ì§€ ëª»í•˜ë„ë¡..
+			// ¿¹±İ¾×ÀÌ 10¸¸¿øÀ» ÃÊ°úÇÏÁö ¸øÇÏµµ·Ï..
 			if (currAmt + amt > 100000) {
 				checkCnt = 2;
 			} else {
-				findAccount.setMoney(currAmt + amt); // ì”ì•¡ + ì…ê¸ˆì•¡.
+				findAccount.setMoney(currAmt + amt); // ÀÜ¾× + ÀÔ±İ¾×.
 			}
 		}
 
 		if (checkCnt == 1) {
-			System.out.println("ì •ì‚­ì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("Á¤»èÀûÀ¸·Î Ã³¸®µÇ¾ú½À´Ï´Ù.");
 		} else if (checkCnt == 2) {
-			System.out.println("í•œë„ì•¡ì„ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.");
+			System.out.println("ÇÑµµ¾×À» ÃÊ°úÇß½À´Ï´Ù.");
 		} else {
-			System.out.println("ê³„ì¢Œë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
+			System.out.println("°èÁÂ¹øÈ£°¡ ¾ø½À´Ï´Ù.");
 		}
 
 	}
 
-	// ì¶œê¸ˆ ë©”ì†Œë“œ.
+	// Ãâ±İ ¸Ş¼Òµå.
 	public static void withdraw() {
-		System.out.println("ì¶œê¸ˆê¸°ëŠ¥.");
-		System.out.print("ê³„ì¢Œë²ˆí˜¸>> ");
+		System.out.println("Ãâ±İ±â´É.");
+		System.out.print("°èÁÂ¹øÈ£>> ");
 		String ano = scn.next();
-		System.out.print("ì˜ˆê¸ˆì•¡ ì…ë ¥>> ");
+		System.out.print("¿¹±İ¾× ÀÔ·Â>> ");
 		int amt = scn.nextInt();
-		int checkCnt = 0; // ì¡°íšŒê°€ ëëŠ”ì§€ ì²´í¬ ì—¬ë¶€ ë³€ìˆ˜.
+		int checkCnt = 0; // Á¶È¸°¡ µÆ´ÂÁö Ã¼Å© ¿©ºÎ º¯¼ö.
 
 		Account findAccount = searchAccountNo(ano);
 		if (findAccount != null) {
 			checkCnt = 1;
 			int currAmt = findAccount.getMoney();
 
-			// ì”ì•¡ì„ ì´ˆê³¼í•´ì„œ ì¶œê¸ˆì„ ëª»í•˜ë„ë¡..
+			// ÀÜ¾×À» ÃÊ°úÇØ¼­ Ãâ±İÀ» ¸øÇÏµµ·Ï..
 			if (currAmt < amt) {
 				checkCnt = 2;
 			} else {
-				findAccount.setMoney(currAmt - amt); // ì”ì•¡ - ì…ê¸ˆì•¡.
+				findAccount.setMoney(currAmt - amt); // ÀÜ¾× - ÀÔ±İ¾×.
 			}
 		}
 
 		if (checkCnt == 1) {
-			System.out.println("ì •ì‚­ì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("Á¤»èÀûÀ¸·Î Ã³¸®µÇ¾ú½À´Ï´Ù.");
 		} else if (checkCnt == 2) {
-			System.out.println("ì”ì•¡ì„ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.");
+			System.out.println("ÀÜ¾×À» ÃÊ°úÇß½À´Ï´Ù.");
 		} else {
-			System.out.println("ê³„ì¢Œë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
+			System.out.println("°èÁÂ¹øÈ£°¡ ¾ø½À´Ï´Ù.");
 		}
 	}
 
-	// ì”ì•¡ì¡°íšŒ ë©”ì†Œë“œ.
+	// ÀÜ¾×Á¶È¸ ¸Ş¼Òµå.
 	public static void findAccountMoney() {
-		System.out.println("ì¡°íšŒê¸°ëŠ¥.");
-		System.out.print("ê³„ì¢Œë²ˆí˜¸>> ");
+		System.out.println("Á¶È¸±â´É.");
+		System.out.print("°èÁÂ¹øÈ£>> ");
 		String ano = scn.next();
 		Account findAccount = searchAccountNo(ano);
 		if (findAccount == null) {
-			System.out.println("ê³„ì¢Œê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			System.out.println("°èÁÂ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 			return;
 		}
-		System.out.println("ì”ì•¡: " + findAccount.getMoney());
+		System.out.println("ÀÜ¾×: " + findAccount.getMoney());
 	}
 
-	// ì „ì²´ë¦¬ìŠ¤íŠ¸ ì¶œë ¥.
+	// ÀüÃ¼¸®½ºÆ® Ãâ·Â.
 	public static void showList() {
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] != null) {
@@ -172,15 +172,15 @@ public class BankApp {
 		}
 	}
 
-	// ê³„ì¢Œë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ë©´ ë°°ì—´(banks)ì—ì„œ ê·¸ ê³„ì¢Œë²ˆí˜¸ë¥¼ ë°˜í™˜ ì—†ìœ¼ë©´ null
-	// 100ê°œ 35ê°œ ì €ì¥
+	// °èÁÂ¹øÈ£¸¦ ÀÔ·ÂÇÏ¸é ¹è¿­(banks)¿¡¼­ ±× °èÁÂ¹øÈ£¸¦ ¹İÈ¯ ¾øÀ¸¸é null
+	// 100°³ 35°³ ÀúÀå
 	public static Account searchAccountNo(String accNo) {
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] != null && banks[i].getAccNo().equals(accNo)) {
 				return banks[i];
 			}
 		}
-		return null; // í´ë˜ìŠ¤ -> null(Student, Car,
+		return null; // Å¬·¡½º -> null(Student, Car,
 	}
 
 }
