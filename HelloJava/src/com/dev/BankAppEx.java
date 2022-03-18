@@ -3,13 +3,13 @@ package com.dev;
 import java.util.Scanner;
 
 public class BankAppEx {
-	// ¸Ş´º : 1. °èÁÂ»ı¼º (¹øÈ£, ¿¹±İÁÖ, ¿¹±İ¾×)
-	// 2. ¿¹±İ (¹øÈ£, ¿¹±İ¾×) > ÃÖ°í ¿¹±İ ±İ¾× 10¸¸¿ø
-	// 3. Ãâ±İ (¹øÈ£, Ãâ±İ¾×) > ÀÜ¾×º¸´Ù Å« ±İ¾× Ãâ±İ ¸øÇÏµµ·Ï.
-	// 4. ÀÜ¾×Á¶È¸ (¹øÈ£)
-	// 5. Á¾·á.
+	// ë©”ë‰´ : 1. ê³„ì¢Œìƒì„± (ë²ˆí˜¸, ì˜ˆê¸ˆì£¼, ì˜ˆê¸ˆì•¡)
+	// 2. ì˜ˆê¸ˆ (ë²ˆí˜¸, ì˜ˆê¸ˆì•¡) > ìµœê³  ì˜ˆê¸ˆ ê¸ˆì•¡ 10ë§Œì›
+	// 3. ì¶œê¸ˆ (ë²ˆí˜¸, ì¶œê¸ˆì•¡) > ì”ì•¡ë³´ë‹¤ í° ê¸ˆì•¡ ì¶œê¸ˆ ëª»í•˜ë„ë¡.
+	// 4. ì”ì•¡ì¡°íšŒ (ë²ˆí˜¸)
+	// 5. ì¢…ë£Œ.
 
-	// static ¼±¾ğÇØÁÖ¸é ÀÎ½ºÅÏÆ® ½ÇÇà ¾ÈÇØµµµÈ´Ù.
+	// static ì„ ì–¸í•´ì£¼ë©´ ì¸ìŠ¤í„´íŠ¸ ì‹¤í–‰ ì•ˆí•´ë„ëœë‹¤.
 	static BankApp[] banks = new BankApp[5];
 	static Scanner scn = new Scanner(System.in);
 
@@ -26,7 +26,7 @@ public class BankAppEx {
 			} else if (menu == 4) {
 				checkAcc();
 			} else if (menu == 5) {
-				System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+				System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 				break;
 			} else if (menu == 9) {
 				showList();
@@ -36,34 +36,34 @@ public class BankAppEx {
 
 	}
 
-	// ¸Ş´ºÃâ·Â ±â´É
+	// ë©”ë‰´ì¶œë ¥ ê¸°ëŠ¥
 	public static void printMenu() {
-		String menu = "1. °èÁÂ»ı¼º (¹øÈ£, ¿¹±İÁÖ, ¿¹±İ¾×)\r\n" + "2. ¿¹±İ (¹øÈ£, ¿¹±İ¾×)\r\n" + "3. Ãâ±İ (¹øÈ£, Ãâ±İ¾×)\r\n" + "4. ÀÜ¾×Á¶È¸ (¹øÈ£)\r\n"
-				+ "5. Á¾·á.\r\n" + "<¼±ÅÃ>";
+		String menu = "1. ê³„ì¢Œìƒì„± (ë²ˆí˜¸, ì˜ˆê¸ˆì£¼, ì˜ˆê¸ˆì•¡)\r\n" + "2. ì˜ˆê¸ˆ (ë²ˆí˜¸, ì˜ˆê¸ˆì•¡)\r\n" + "3. ì¶œê¸ˆ (ë²ˆí˜¸, ì¶œê¸ˆì•¡)\r\n" + "4. ì”ì•¡ì¡°íšŒ (ë²ˆí˜¸)\r\n"
+				+ "5. ì¢…ë£Œ.\r\n" + "<ì„ íƒ>";
 		System.out.println(menu);
 	}
 
-	// °èÁÂ»ı¼º
+	// ê³„ì¢Œìƒì„±
 	public static void createAcc() {
-		System.out.println("°èÁÂ»ı¼º");
-		System.out.println("°èÁÂ¹øÈ£ÀÔ·Â>>");
+		System.out.println("ê³„ì¢Œìƒì„±");
+		System.out.println("ê³„ì¢Œë²ˆí˜¸ì…ë ¥>>");
 		String accNo;
 
-		// °èÁÂ¹øÈ£ ÀÖ´ÂÁö Ã¼Å©
+		// ê³„ì¢Œë²ˆí˜¸ ìˆëŠ”ì§€ ì²´í¬
 		while (true) {
 			accNo = scn.next();
 			if (schAccNo(accNo) != null) {
-				System.out.println("ÀÌ¹Ì Á¸ÀçÇÏ´Â °èÁÂ¹øÈ£ ÀÔ´Ï´Ù.");
-				System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+				System.out.println("ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ê³„ì¢Œë²ˆí˜¸ ì…ë‹ˆë‹¤.");
+				System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”");
 			} else {
 				break;
 			}
 
 		}
 
-		System.out.println("¿¹±İÁÖÀÔ·Â>>");
+		System.out.println("ì˜ˆê¸ˆì£¼ì…ë ¥>>");
 		String accNme = scn.next();
-		System.out.println("¿¹±İ¾×ÀÔ·Â>>");
+		System.out.println("ì˜ˆê¸ˆì•¡ì…ë ¥>>");
 		int money = scn.nextInt();
 
 		BankApp accnt = new BankApp(accNo, accNme, money);
@@ -76,10 +76,10 @@ public class BankAppEx {
 		}
 	}
 
-	// ¿¹±İ
+	// ì˜ˆê¸ˆ
 	public static void deposit() {
-		System.out.println("¿¹±İ±â´É");
-		System.out.println("°èÁÂ¹øÈ£>>");
+		System.out.println("ì˜ˆê¸ˆê¸°ëŠ¥");
+		System.out.println("ê³„ì¢Œë²ˆí˜¸>>");
 		String ano;
 		int Amt;
 		int crrAmt;
@@ -89,38 +89,38 @@ public class BankAppEx {
 			if (schAccNo(ano) != null) {
 				crrAmt = schAccNo(ano).getMoney();
 				while (true) {
-					System.out.println("¿¹±İ¾×À» ÀÔ±İÇÏ¼¼¿ä");
+					System.out.println("ì˜ˆê¸ˆì•¡ì„ ì…ê¸ˆí•˜ì„¸ìš”");
 					Amt = scn.nextInt();
 					if (crrAmt + Amt > 10000) {
-						System.out.println("¿¹±İÇÑµµ¸¦ ÃÊ°úÇÕ´Ï´Ù.");
-						System.out.println("´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+						System.out.println("ì˜ˆê¸ˆí•œë„ë¥¼ ì´ˆê³¼í•©ë‹ˆë‹¤.");
+						System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”");
 					} else {
 						int bal = crrAmt + Amt;
 						schAccNo(ano).setMoney(bal);
-						System.out.println("ÀÔ±İ ¿Ï·á µÇ¾ú½À´Ï´Ù.");
+						System.out.println("ì…ê¸ˆ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 						break;
 					}
 				}
 				break;
 
 			} else {
-				System.out.println("°èÁÂ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+				System.out.println("ê³„ì¢Œë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”");
 			}
 		}
 	}
 
-	// Ãâ±İ
+	// ì¶œê¸ˆ
 	public static void withdraw() {
-		System.out.println("Ãâ±İ±â´É");
+		System.out.println("ì¶œê¸ˆê¸°ëŠ¥");
 
 	}
 
-	// ÀÜ¾×Á¶È¸
+	// ì”ì•¡ì¡°íšŒ
 	public static void checkAcc() {
-		System.out.println("ÀÜ¾×Á¶È¸");
+		System.out.println("ì”ì•¡ì¡°íšŒ");
 	}
 
-	// ÀüÃ¼¸®½ºÆ® Ãâ·Â
+	// ì „ì²´ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 	public static void showList() {
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] != null) {
@@ -129,16 +129,16 @@ public class BankAppEx {
 		}
 	}
 
-	// °èÁÂ¹øÈ£¸¦ ÀÔ·ÂÇÏ¸é ¹è¿­(banks)¿¡¼­ ±× °èÁÂ¹øÈ£¸¦ ¹İÈ¯ ¾øÀ¸¸é null
-	// Áßº¹Ã¼Å©
+	// ê³„ì¢Œë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ë©´ ë°°ì—´(banks)ì—ì„œ ê·¸ ê³„ì¢Œë²ˆí˜¸ë¥¼ ë°˜í™˜ ì—†ìœ¼ë©´ null
+	// ì¤‘ë³µì²´í¬
 	public static BankApp schAccNo(String accNo) {
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] != null && banks[i].getAccNo().equals(accNo)) {
 				return banks[i];
-				// BankApp Å¬·¡½º¸¦ ¸®ÅÏÇÑ´Ù.
+				// BankApp í´ë˜ìŠ¤ë¥¼ ë¦¬í„´í•œë‹¤.
 			}
 
 		}
-		return null; // ¹İÈ¯ µÇ´Â °ªÀÌ ¾ø´Ù -> null (¸ğµç Å¬·¡½º¿¡ ´ëÀÀµÇ´Â °ª, ¸ğµç Å¬·¡½ºÀÇ ÃÊ±â°ªµµ µÉ ¼ö ÀÖ´Ù)
+		return null; // ë°˜í™˜ ë˜ëŠ” ê°’ì´ ì—†ë‹¤ -> null (ëª¨ë“  í´ë˜ìŠ¤ì— ëŒ€ì‘ë˜ëŠ” ê°’, ëª¨ë“  í´ë˜ìŠ¤ì˜ ì´ˆê¸°ê°’ë„ ë  ìˆ˜ ìˆë‹¤)
 	}
 }
