@@ -10,7 +10,7 @@ public class BankAppEx {
 	// 5. 종료.
 
 	// static 선언해주면 인스턴트 실행 안해도된다.
-	static BankApp[] banks = new BankApp[100];
+	static BankApp[] banks = new BankApp[5];
 	static Scanner scn = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -80,40 +80,38 @@ public class BankAppEx {
 	public static void deposit() {
 		System.out.println("예금기능");
 		System.out.println("계좌번호>>");
-		String ano = scn.next();
-		System.out.println("예금액을 입력하세요");
-		int amt = scn.nextInt();
-		int checkCnt = 0; // 조회가 되었는지 체크하는 변수
+		String ano;
+		int Amt;
+		int crrAmt;
 
-		for (int i = 1; i < banks.length; i++) {
-			if (banks[i] != null && banks[i].getAccNo().equals(ano)) {
-				// 계좌가 조회되었을 때 실행
-				checkCnt = 1;
-				int currAmt = banks[i].getMoney();
-
-				// 예금액이 10만원을 초과하지 못하도록
-				if (currAmt + amt > 100000) {
-					checkCnt = 2;
-					break;
-				} else {
-					banks[i].setMoney(currAmt + amt); // 잔액 + 입금액
-					break;
+		while (true) {
+			ano = scn.next();
+			if (schAccNo(ano) != null) {
+				crrAmt = schAccNo(ano).getMoney();
+				while (true) {
+					System.out.println("예금액을 입금하세요");
+					Amt = scn.nextInt();
+					if (crrAmt + Amt > 10000) {
+						System.out.println("예금한도를 초과합니다.");
+						System.out.println("다시 입력해 주세요");
+					} else {
+						int bal = crrAmt + Amt;
+						schAccNo(ano).setMoney(bal);
+						System.out.println("입금 완료 되었습니다.");
+						break;
+					}
 				}
-			}
-		}
 
-		if (checkCnt == 1) {
-			System.out.println("정상적으로 처리되었습니다.");
-		} else if (checkCnt == 2) {
-			System.out.println("한도액을 초과했습니다.");
-		} else {
-			System.out.println("당신의 계좌는 너굴맨이 처리했다구!");
+			} else {
+				System.out.println("계좌번호를 다시 입력하세요");
+			}
 		}
 	}
 
 	// 출금
 	public static void withdraw() {
 		System.out.println("출금기능");
+
 	}
 
 	// 잔액조회
