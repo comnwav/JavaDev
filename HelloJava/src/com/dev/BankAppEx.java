@@ -223,11 +223,4 @@ public class BankAppEx {
 		return null; // 반환 되는 값이 없다 -> null (모든 클래스에 대응되는 값, 모든 클래스의 초기값도 될 수 있다)
 	}
 
-	// 계좌유효성체크
-//	public static BankApp checkAccNo() {
-//		for (int i = 0; i < banks.length; i++) {
-//			
-//		}
-//	}
-
 }
