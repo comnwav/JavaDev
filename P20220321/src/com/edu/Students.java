@@ -2,7 +2,7 @@ package com.edu;
 
 public class Students extends Person {
 	
-	// ÇĞ±³, ÇĞ³â + ( ÀÌ¸§, ³ªÀÌ, Å° ¸ö¹«°Ô )
+	// í•™êµ, í•™ë…„ + ( ì´ë¦„, ë‚˜ì´, í‚¤ ëª¸ë¬´ê²Œ )
 	private String School;
 	private int grade;
 	

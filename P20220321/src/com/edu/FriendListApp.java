@@ -29,7 +29,7 @@ public class FriendListApp {
 		}
 
 		// UniFriend; getUniversity, getMajor
-		Friend friend = (Friend) f2; 
+		Friend friend = f2; 
 		friend = f1;
 		UniFriend uni = null;
 		// instanceof 해당 클래스의 인스턴스인지 체크 그리고 casting 해야함
