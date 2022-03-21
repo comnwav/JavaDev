@@ -18,11 +18,28 @@ public class FriendListApp {
 		f2.setMajor("컴퓨터공학과");
 
 		ComFriend f3 = new ComFriend("최규완", 29, 179.3, 75.2, "010-1341-7349", "네이버", "지도app개발연구원");
+		
+		
+		Friend f4 = new Friend();
+		f4.setName("서현일");
+		f4.setAge(25);
+		f4.setHeight(1792);
+		f4.setWeight(72.5);
+		f4.setPhone("01099827345");
+
+		UniFriend f5 = new UniFriend("서현일", 29, 178.3, 69.2, "010-9982-7345");
+		f5.setUniversity("영남대학교");
+		f5.setMajor("컴퓨터공학과");
+
+		ComFriend f6 = new ComFriend("최규완", 29, 179.3, 75.2, "010-1341-7349", "네이버", "지도app개발연구원");
 
 		friends[0] = f1;
 		friends[1] = f2;
 		friends[2] = f3;
-
+		friends[3] = f4;
+		friends[4] = f5;
+		friends[5] = f6;
+		
 		for (int i = 0; i < friends.length; i++) {
 			if (friends[i] != null)
 				System.out.println(friends[i].toString());
@@ -38,6 +55,12 @@ public class FriendListApp {
 			// 부모클래스의 참조변수 > 자식 클래스의 참조변수 할당가능
 			uni.getUniversity();
 		}
+		
+		for (int i = 0; i < friends.length; i++ ) {
+			if (friends[i] != )
+			System.out.println(friends[i].toString());
+		}
+		
 	}
 
 }
