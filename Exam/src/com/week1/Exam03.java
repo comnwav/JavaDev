@@ -2,8 +2,8 @@ package com.week1;
 
 import java.util.Scanner;
 
-//ë¬¸ì œ3) ì •ìˆ˜í˜•ë°°ì—´ ì„ ì–¸í•˜ê³  ì‚¬ìš©ìžë¡œ ì„¸ê°œì˜ ì •ìˆ˜ê°’ì„ ìž…ë ¥ë°›ì•„ì„œ ë°°ì—´ì— ì €ìž¥. 
-//ì œì¼ í°ê°’ì„ êµ¬í•˜ëŠ” ì½”ë“œë¥¼ ìž‘ì„±.
+//¹®Á¦3) Á¤¼öÇü¹è¿­ ¼±¾ðÇÏ°í »ç¿ëÀÚ·Î ¼¼°³ÀÇ Á¤¼ö°ªÀ» ÀÔ·Â¹Þ¾Æ¼­ ¹è¿­¿¡ ÀúÀå. 
+//Á¦ÀÏ Å«°ªÀ» ±¸ÇÏ´Â ÄÚµå¸¦ ÀÛ¼º.
 public class Exam03 {
 	public static void main(String[] args) {
 
