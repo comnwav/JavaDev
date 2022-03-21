@@ -25,11 +25,11 @@ public class Vehicle {
 		this.maxSpeed = maxSpeed;
 	}
 
-	@Override
-	public String toString() {
-		return this. + "'speed is " + this.maxSpeed;
-	}
-	
+//	@Override
+//	public String toString() {
+//		return this. + "'speed is " + this.maxSpeed;
+//	}
+//	
 	
 	
 }

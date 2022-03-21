@@ -56,10 +56,10 @@ public class FriendListApp {
 			uni.getUniversity();
 		}
 		
-		for (int i = 0; i < friends.length; i++ ) {
-			if (friends[i] != )
-			System.out.println(friends[i].toString());
-		}
+//		for (int i = 0; i < friends.length; i++ ) {
+//			if (friends[i] != )
+//			System.out.println(friends[i].toString());
+//		}
 		
 	}
 
