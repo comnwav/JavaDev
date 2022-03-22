@@ -1,6 +1,4 @@
-package com.edu.except;
-
-import com.edu.interfaces.RemoteControl;
+package com.edu.interfaces;
 
 public class Computer implements RemoteControl {
 	
