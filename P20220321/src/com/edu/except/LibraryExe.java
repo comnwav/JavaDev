@@ -4,8 +4,25 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibraryExe {
+	
+	private static LibraryExe singleton = new LibraryExe();
+	
+	//
+	
+	private LibraryExe() {
+		
+	}
+	
+	//
+	
+	public static LibraryExe getInstance() {
+		return singleton;
+	}
+	
+	// 클래스 A, 클래스 B, 클래스 C ... 클래스 Z
+	// 클래스 main > main 메소드 포함.
 
-	public static void main(String[] args) {
+	public void run() {
 		// 책제목, 저자, 가격 > 저장
 		// 리스트 보여주기
 		Scanner scn = new Scanner(System.in);
@@ -72,7 +89,7 @@ public class LibraryExe {
 		scn.close();
 	}
 
-	public static void showMessage(String str) {
+	public void showMessage(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			System.out.print(str.charAt(i));
 			try {
