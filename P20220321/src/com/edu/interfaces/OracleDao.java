@@ -5,7 +5,6 @@ public class OracleDao implements Dao {
 	@Override
 	public void select() {
 		System.out.println("OracleDB에서 조회합니다.");
-		
 	}
 
 	@Override
@@ -22,7 +21,5 @@ public class OracleDao implements Dao {
 	public void delete() {
 		System.out.println("OracleDB에서 삭제합니다.");
 	}
-	
-	
 
 }
