@@ -8,7 +8,7 @@ public class Student {
 	// 생성자: 기본생성자, 매개값이 4개 생성자
 	// Getter, Setter 생성
 	
-	int num;
+	int sno;
 	String name;
 	int engScore;
 	int korScore;
@@ -17,20 +17,27 @@ public class Student {
 		
 	}
 	
+	
+	
+	public Student(int num) {
+		super();
+		this.sno = num;
+	}
+
 	public Student(int num, String name, int engScore, int korScore) {
 		super();
-		this.num = num;
+		this.sno = num;
 		this.name = name;
 		this.engScore = engScore;
 		this.korScore = korScore;
 	}
 
 	public int getNum() {
-		return num;
+		return sno;
 	}
 
 	public void setNum(int num) {
-		this.num = num;
+		this.sno = num;
 	}
 
 	public String getName() {
@@ -60,7 +67,7 @@ public class Student {
 	// toString() > 재정의
 	@Override
 	public String toString() {
-		return "Student [num=" + num + ", name=" + name + ", engScore=" + engScore + ", korScore=" + korScore + "]";
+		return "Student [num=" + sno + ", name=" + name + ", engScore=" + engScore + ", korScore=" + korScore + "]";
 	}
 	
 	
