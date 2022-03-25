@@ -33,7 +33,9 @@ public class BookMember extends Member {
 
 	@Override
 	public String toString() {
-		return "BookMember [cap=" + cap + ", room=" + room + "]";
+		return "[도서반] " + super.toString() + ", 반장:" + cap + ", 강의실:" + room;
 	}
+
+	
 	
 }

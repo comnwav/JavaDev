@@ -1,3 +1,4 @@
+
 package com.edu;
 
 public class Member {
@@ -11,6 +12,16 @@ public class Member {
 		this.memberName = memberName;
 		this.phone = phone;
 	}
+	
+	
+
+	public Member(int memberId, String phone) {
+		super();
+		this.memberId = memberId;
+		this.phone = phone;
+	}
+
+
 
 	public int getMemberId() {
 		return memberId;
@@ -38,7 +49,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", memberName=" + memberName + ", phone=" + phone + "]";
+		return "ID:" + memberId + ", 이름:" + memberName + ", 휴대폰번호:" + phone;
 	}
 
 }

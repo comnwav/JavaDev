@@ -33,8 +33,9 @@ public class SwimMember extends Member {
 
 	@Override
 	public String toString() {
-		return "SwimMember [instSwim=" + instSwim + ", grade=" + grade + "]";
+		return "[수영팀] " + super.toString() + ", 강사" + instSwim + ", 등급" + grade;
 	}
+
 	
 	
 	

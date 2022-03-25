@@ -23,6 +23,7 @@ public class MemberApp {
 			System.out.print("선택>>");
 			int menu = scn.nextInt();
 
+			// 등록
 			if (menu == 1) {
 				System.out.println("등록할 강좌를 선택하세요");
 				System.out.println("1.도서반 2.축구반 3.수영반");
@@ -33,26 +34,58 @@ public class MemberApp {
 					System.out.println("ID를 입력하세요");
 					int id = scn.nextInt();
 					System.out.println("이름을 입력하세요");
-					String name = scn.nextLine();
+					String name = scn.next();
 					System.out.println("휴대폰 번호를 입력하세요");
-					String phone = scn.nextLine();
-					
+					String phone = scn.next();
+
 					if (lect == 1) {
 						System.out.println("도서반장의 이름을 입력하세요");
-						String capB = scn.nextLine();
+						String capB = scn.next();
 						System.out.println("강의실의 이름을 입력하세요");
-						String roomB = scn.nextLine();
-						
+						String roomB = scn.next();
+
 						Member bm = new BookMember(id, name, phone, capB, roomB);
 						mi.addMember(bm);
-						
-					}
-				} 
+					} else if (lect == 2) {
+						System.out.println("코치의 이름을 입력하세요");
+						String coaS = scn.next();
+						System.out.println("락커룸 이름을 입력하세요");
+						String rockS = scn.next();
 
+						Member sm = new SoccerMember(id, name, phone, coaS, rockS);
+						mi.addMember(sm);
+
+					} else if (lect == 3) {
+						System.out.println("강사의 이름을 입력하세요");
+						String instS = scn.next();
+						System.out.println("등급을 입력하세요");
+						String gradeS = scn.next();
+
+						Member swm = new BookMember(id, name, phone, instS, gradeS);
+						mi.addMember(swm);
+
+					}
+				}
+
+			// 수정
 			} else if (menu == 2) {
+				System.out.println("수정할 회원의 ID를 입력하세요");
+				int moId = scn.nextInt();
+				System.out.println("새로운 휴대폰 번호를 입력해주세요");
+				String moPhone = scn.next();
 				
+				Member modi = new Member(moId, moPhone);
+				
+				mi.modifyMember(modi);
+				
+				
+			// 전체리스트
 			} else if (menu == 3) {
+				for (Member s : members) {
+					System.out.println(s);
+				}
 				
+			// 종료
 			} else if (menu == 9) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
@@ -70,12 +103,15 @@ public class MemberApp {
 
 		@Override
 		public void modifyMember(Member member) {
-			
+			for (Member s : members) {
+				if (s.getMemberId() == member.getMemberId()){
+					s.setPhone(member.getPhone());
+				}
+			}
 		}
 
 		@Override
 		public List<Member> memberList() {
-
 			return members;
 		}
 	}

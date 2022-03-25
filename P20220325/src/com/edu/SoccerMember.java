@@ -33,8 +33,9 @@ public class SoccerMember extends Member {
 
 	@Override
 	public String toString() {
-		return "SoccerMember [instSoccer=" + instSoccer + ", rock=" + rock + "]";
+		return "[축구반] " + super.toString() + ", 코치:" + instSoccer + ", 락커룸:" + rock;
 	}
+
 
 	
 	
