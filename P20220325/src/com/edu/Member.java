@@ -7,21 +7,16 @@ public class Member {
 	private String phone;
 	
 	public Member(int memberId, String memberName, String phone) {
-		super();
 		this.memberId = memberId;
 		this.memberName = memberName;
 		this.phone = phone;
 	}
-	
-	
 
 	public Member(int memberId, String phone) {
 		super();
 		this.memberId = memberId;
 		this.phone = phone;
 	}
-
-
 
 	public int getMemberId() {
 		return memberId;

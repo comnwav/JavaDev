@@ -1,43 +1,30 @@
 package com.edu.collect;
 
-public class Student {
-	
-	// 데이터 타입 정의 클래스
-	
+import java.io.Serializable;
+
+public class Student implements Serializable {
 	// 학생번호(1, 2, 3), 이름(홍길동), 영어(80), 국어(70)
-	// 생성자: 기본생성자, 매개값이 4개 생성자
-	// Getter, Setter 생성
-	
-	int sno;
-	String name;
-	int engScore;
-	int korScore;
-	
+	private int number;
+	private String name;
+	private int engScore;
+	private int korScore;
+
 	public Student() {
-		
-	}
-	
-	
-	
-	public Student(int num) {
-		super();
-		this.sno = num;
 	}
 
-	public Student(int num, String name, int engScore, int korScore) {
-		super();
-		this.sno = num;
+	public Student(int number, String name, int engScore, int korScore) {
+		this.number = number;
 		this.name = name;
 		this.engScore = engScore;
 		this.korScore = korScore;
 	}
 
-	public int getNum() {
-		return sno;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setNum(int num) {
-		this.sno = num;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	public String getName() {
@@ -64,13 +51,11 @@ public class Student {
 		this.korScore = korScore;
 	}
 
-	// toString() > 재정의
+	// toString() => 재정의.
 	@Override
 	public String toString() {
-		return "Student [num=" + sno + ", name=" + name + ", engScore=" + engScore + ", korScore=" + korScore + "]";
+		return "Student [number=" + number + ", name=" + name + ", engScore=" + engScore + ", korScore=" + korScore
+				+ "]";
 	}
-	
-	
-	
 
 }

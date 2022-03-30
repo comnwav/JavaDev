@@ -32,7 +32,17 @@ public class MemberApp {
 
 				if (lect > 0 && lect <= 3) {
 					System.out.println("ID를 입력하세요");
-					int id = scn.nextInt();
+					int id;
+
+					try {
+						id = scn.nextInt();
+					} catch (Exception e) {
+						System.out.println("입력타입이 다릅니다. 다시입력하시오!\n");
+						System.out.println(e.getClass().getName() + "예외가" + e.getMessage() + "때문에 발생했다");
+						scn.next();
+						continue;
+					}
+
 					System.out.println("이름을 입력하세요");
 					String name = scn.next();
 					System.out.println("휴대폰 번호를 입력하세요");
@@ -67,25 +77,24 @@ public class MemberApp {
 					}
 				}
 
-			// 수정
+				// 수정
 			} else if (menu == 2) {
 				System.out.println("수정할 회원의 ID를 입력하세요");
 				int moId = scn.nextInt();
 				System.out.println("새로운 휴대폰 번호를 입력해주세요");
 				String moPhone = scn.next();
-				
+
 				Member modi = new Member(moId, moPhone);
-				
+
 				mi.modifyMember(modi);
-				
-				
-			// 전체리스트
+
+				// 전체리스트
 			} else if (menu == 3) {
 				for (Member s : members) {
 					System.out.println(s);
 				}
-				
-			// 종료
+
+				// 종료
 			} else if (menu == 9) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
@@ -104,7 +113,7 @@ public class MemberApp {
 		@Override
 		public void modifyMember(Member member) {
 			for (Member s : members) {
-				if (s.getMemberId() == member.getMemberId()){
+				if (s.getMemberId() == member.getMemberId()) {
 					s.setPhone(member.getPhone());
 				}
 			}

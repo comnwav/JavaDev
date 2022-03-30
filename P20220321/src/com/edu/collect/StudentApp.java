@@ -7,28 +7,85 @@ import java.util.Scanner;
 public class StudentApp {
 
 	List<Student> list = new ArrayList<Student>();
-	static Scanner scn = new Scanner(System.in);
-	
+	Scanner scn = new Scanner(System.in);
+
+	// 생성자
 	public StudentApp() {
-		list.add(new Student(123, "서현일", 90, 32));
-		list.add(new Student(243, "서현일", 42, 67));
-		list.add(new Student(321, "최규완", 23, 34));
-		list.add(new Student(521, "권태현", 53, 67));
-		
+//   list.add(new Student(101, "권가희", 50, 60));
+//   list.add(new Student(102, "유해정", 70, 80));
+//   list.add(new Student(103, "이유빈", 90, 70));
 	}
 
+	// 멤버 클래스
+	class StudentServiceImpl implements StudentService {
+
+		@Override
+		public void insertStudent(Student student) {
+			list.add(student);
+		}
+
+		@Override
+		public Student getStudent(int sno) { // 학생번호로 한건 조회.
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getNumber() == sno) {
+					return list.get(i);
+				}
+			}
+			return null;
+		}
+
+		@Override
+		public List<Student> studentList() { // 전체 리스트.
+			return list;
+		}
+
+		@Override
+		public void modifyStudent(Student student) { // 수정.
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getNumber() == student.getNumber()) {
+					list.get(i).setEngScore(student.getEngScore()); // 영어점수
+					list.get(i).setKorScore(student.getKorScore()); // 국어점수
+				}
+			}
+		}
+
+		@Override
+		public void removeStudent(int sno) {
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getNumber() == sno) {
+					list.remove(i);
+				}
+			}
+		}
+
+		@Override
+		public List<Student> searchStudent(String name) {
+			List<Student> searchList = new ArrayList<Student>();
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getName().equals(name)) {
+					searchList.add(list.get(i));
+				}
+			}
+			return searchList;
+		}
+
+		@Override
+		public void saveToFile() {
+			System.exit(0);
+		}
+
+	} // end of StudentServiceImpl
+
 	public void execute() {
+		StudentService service = new StudentServiceFile();
 
-		StudentService service = new StudentServiceImpl();
-
-		// 메뉴: 1.추가 / 2.리스트 / 3.한건조회 / 4.수정 / 9.종료
+		// 메뉴: 1.추가 2.리스트 3.한건조회 4.수정 9.종료
 		while (true) {
-			System.out.println("1.추가 2.리스트 3.한건조회 4.수정 5.삭제 6.이름조회 9.종료");
-			System.out.println("선택>>");
-
+			System.out.println("1.추가 2.리스트 3.한건조회 4.수정 5.한건삭제 6. 이름조회 9.종료");
+			System.out.print("선택>> ");
 			int menu = scn.nextInt();
-			if (menu == 1) {
-
+			if (menu == 1) { // 추가
+				// 학생정보 추가입력. : 학생번호, 이름, 영어, 국어점수.
 				System.out.println("학생번호입력>>");
 				int stuNo = scn.nextInt();
 				System.out.println("학생이름입력>>");
@@ -41,118 +98,60 @@ public class StudentApp {
 				Student s1 = new Student(stuNo, name, engScore, korScore);
 				service.insertStudent(s1);
 
-			} else if (menu == 2) {
+			} else if (menu == 2) { // 리스트
 				List<Student> list = service.studentList();
 				for (Student s : list) {
-					System.out.println(s);
+					System.out.println(s.toString());
 				}
 
-			} else if (menu == 3) {
+			} else if (menu == 3) { // 한건조회
 				System.out.println("조회할 학생번호 입력>>");
 				int studNo = scn.nextInt();
 				Student student = service.getStudent(studNo);
-				student.toString();
-
-			} else if (menu == 4) {
-				System.out.println("학생번호입력>>");
+				if (student == null) {
+					System.out.println("조회돤 결과가 없습니다.");
+				} else {
+					System.out.println(student.toString());
+				}
+			} else if (menu == 4) { // 수정
+				System.out.println("수정할 학생번호입력>>");
 				int stuNo = scn.nextInt();
-				System.out.println("수정-영어입력>>");
+				System.out.println("영어입력>>");
 				int engScore = scn.nextInt();
-				System.out.println("수정-국어입력>>");
+				System.out.println("국어입력>>");
 				int korScore = scn.nextInt();
 
 				Student s1 = new Student(stuNo, null, engScore, korScore);
 				service.modifyStudent(s1);
 				System.out.println("처리가 완료되었습니다.");
 
-			} else if (menu == 5) {
-				System.out.println("학생삭제");
-				System.out.println("학생번호입력>>");
-				int stuNo = scn.nextInt();
-				service.removeStudent(stuNo);
-				System.out.println("삭제가 완료되었습니다.");
-
-			} else if (menu == 6) {
-				
-				System.out.println("이름으로 조회");
-				System.out.println("이름입력>>");
-				String name = scn.next();
-//				List<Student> st = service.searchStudent(name);
-//				System.out.println(st);
-				System.out.println(service.searchStudent(name));
-				System.out.println("조회완료");
-
-				
-			} else if (menu == 9) {
+			} else if (menu == 5) { // 삭제
+				System.out.println("삭제할 학생번호 입력>>");
+				int studNo = scn.nextInt();
+				Student student = service.getStudent(studNo);
+				if (student == null) {
+					System.out.println("조회돤 결과가 없습니다.");
+				} else {
+					service.removeStudent(studNo);
+					System.out.println("삭제가 완료되었습니다.");
+				}
+			} else if (menu == 6) { // 이름조회
+				System.out.println("조회할 이름 입력>>");
+				String studName = scn.next();
+				List<Student> students = service.searchStudent(studName);
+				for (Student s : students) {
+					System.out.println(s.toString());
+				}
+			} else if (menu == 9) { // 종료
 				System.out.println("프로그램을 종료합니다.");
+				service.saveToFile();
 				break;
-			}
-
-		}
-		System.out.println("end of program");
-	}
-
-	class StudentServiceImpl implements StudentService {
-
-		// 추가
-		@Override
-		public void insertStudent(Student student) {
-			list.add(student);
-		}
-
-		// 한건조회
-		@Override
-		public Student getStudent(int sno) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getNum() == sno) {
-					return list.get(i);
-				}
-			}
-			return null;
-		}
-
-		// 전체 리스트
-		@Override
-		public List<Student> studentList() {
-			return list;
-		}
-
-		// 한건수정
-		@Override
-		public void modifyStudent(Student student) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getNum() == student.getNum()) {
-					list.get(i).setEngScore(student.getEngScore());
-					list.get(i).setKorScore(student.getKorScore());
-				}
-
+			} else {
+				// 잘못된 선택
 			}
 		}
 
-		@Override
-		public void removeStudent(int sno) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getNum() == sno) {
-					list.remove(i);
-				}
-
-			}
-
-		}
-
-		// 이름으로 조회 - 중복가능
-		@Override
-		public List<Student> searchStudent(String name) {
-			List<Student> searchList = new ArrayList<Student>();
-			// 찾았다고 종료시키면 안됨
-			for (int i = 0; i < list.size(); i++) {
-				// 같은 이름이 있는지 찾아보고 있으면 서치 리스트에 add
-				if (list.get(i).getName().equals(name)) {
-					searchList.add(list.get(i));
-				}
-			}
-			return searchList;
-		}
+		System.out.println("end of program..");
 	}
 
 }
