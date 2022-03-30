@@ -9,13 +9,6 @@ public class StudentApp {
 	List<Student> list = new ArrayList<Student>();
 	Scanner scn = new Scanner(System.in);
 
-	// 생성자
-	public StudentApp() {
-//   list.add(new Student(101, "권가희", 50, 60));
-//   list.add(new Student(102, "유해정", 70, 80));
-//   list.add(new Student(103, "이유빈", 90, 70));
-	}
-
 	// 멤버 클래스
 	class StudentServiceImpl implements StudentService {
 
@@ -77,7 +70,13 @@ public class StudentApp {
 	} // end of StudentServiceImpl
 
 	public void execute() {
-		StudentService service = new StudentServiceFile();
+
+		StudentServiceOracle sso = new StudentServiceOracle();
+
+		StudentService
+//		service = StudentServiceImpl();
+//		service = new StudentServiceFile();
+		service = new StudentServiceOracle();
 
 		// 메뉴: 1.추가 2.리스트 3.한건조회 4.수정 9.종료
 		while (true) {
@@ -96,7 +95,8 @@ public class StudentApp {
 				int korScore = scn.nextInt();
 
 				Student s1 = new Student(stuNo, name, engScore, korScore);
-				service.insertStudent(s1);
+
+				sso.insertStudent(s1);
 
 			} else if (menu == 2) { // 리스트
 				List<Student> list = service.studentList();
@@ -105,14 +105,16 @@ public class StudentApp {
 				}
 
 			} else if (menu == 3) { // 한건조회
-				System.out.println("조회할 학생번호 입력>>");
-				int studNo = scn.nextInt();
-				Student student = service.getStudent(studNo);
-				if (student == null) {
-					System.out.println("조회돤 결과가 없습니다.");
-				} else {
-					System.out.println(student.toString());
-				}
+				System.out.println("조회할 학생이름 입력>>");
+				String stuName = scn.next();
+				System.out.println(sso.searchStudent(stuName).toString());
+
+//				Student student = service.getStudent(studNo);
+//				if (student == null) {
+//					System.out.println("조회돤 결과가 없습니다.");
+//				} else {
+//					System.out.println(student.toString());
+//				}
 			} else if (menu == 4) { // 수정
 				System.out.println("수정할 학생번호입력>>");
 				int stuNo = scn.nextInt();
@@ -122,19 +124,30 @@ public class StudentApp {
 				int korScore = scn.nextInt();
 
 				Student s1 = new Student(stuNo, null, engScore, korScore);
-				service.modifyStudent(s1);
-				System.out.println("처리가 완료되었습니다.");
+
+				sso.modifyStudent(s1);
 
 			} else if (menu == 5) { // 삭제
 				System.out.println("삭제할 학생번호 입력>>");
 				int studNo = scn.nextInt();
-				Student student = service.getStudent(studNo);
-				if (student == null) {
-					System.out.println("조회돤 결과가 없습니다.");
-				} else {
-					service.removeStudent(studNo);
+
+				System.out.println("사원을 정말로 삭제하시겠습니까? y/n");
+				String yn = scn.next();
+				if (yn.equals("y")) {
+					sso.removeStudent(studNo);
 					System.out.println("삭제가 완료되었습니다.");
+				} else {
+					continue;
 				}
+
+//				Student student = service.getStudent(studNo);
+//				if (student == null) {
+//					System.out.println("조회돤 결과가 없습니다.");
+//				} else {
+//					service.removeStudent(studNo);
+//					System.out.println("삭제가 완료되었습니다.");
+//				}
+
 			} else if (menu == 6) { // 이름조회
 				System.out.println("조회할 이름 입력>>");
 				String studName = scn.next();
@@ -150,8 +163,6 @@ public class StudentApp {
 				// 잘못된 선택
 			}
 		}
-
 		System.out.println("end of program..");
 	}
-
 }

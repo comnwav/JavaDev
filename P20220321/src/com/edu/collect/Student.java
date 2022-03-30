@@ -1,18 +1,36 @@
 package com.edu.collect;
 
-import java.io.Serializable;
-
-public class Student implements Serializable {
+//public class Student implements Serializable {
+public class Student {
 	// 학생번호(1, 2, 3), 이름(홍길동), 영어(80), 국어(70)
 	private int number;
 	private String name;
 	private int engScore;
 	private int korScore;
+	private boolean result;
+	
+	
+
+	public Student(boolean result) {
+		super();
+		this.result = result;
+	}
+	
+	
+
+	public boolean isResult() {
+		return result;
+	}
+
+	public void setResult(boolean result) {
+		this.result = result;
+	}
 
 	public Student() {
 	}
 
 	public Student(int number, String name, int engScore, int korScore) {
+		super();
 		this.number = number;
 		this.name = name;
 		this.engScore = engScore;
@@ -51,7 +69,6 @@ public class Student implements Serializable {
 		this.korScore = korScore;
 	}
 
-	// toString() => 재정의.
 	@Override
 	public String toString() {
 		return "Student [number=" + number + ", name=" + name + ", engScore=" + engScore + ", korScore=" + korScore
