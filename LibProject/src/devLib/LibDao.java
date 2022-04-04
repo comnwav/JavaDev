@@ -20,7 +20,7 @@ public class LibDao {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("<Connected>");
+		System.out.println("[Connecting to Datebase...]");
 		return conn;
 	}
 
@@ -39,29 +39,6 @@ public class LibDao {
 			e.printStackTrace();
 		}
 
-	}
-
-	public int login(String usrId, String usrPass) {
-		String sql = "SELECT usrPass FROM user WHERE usrId = ?";
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, usrId);
-			rs = psmt.executeQuery();
-
-			if (rs.next()) {
-				if (rs.getString(1).equals(usrPass)) {
-					return 1;
-				} else {
-					return 0;
-				}
-			}
-			return -1;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -2;
 	}
 
 }
