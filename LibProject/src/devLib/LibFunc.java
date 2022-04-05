@@ -1,16 +1,45 @@
 package devLib;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LibFunc extends LibDao implements LibService {
 
 	@Override
-	public void infoUsr() {
+	public List<Book> infoUsr() {
+		conn = getConnect();
+		String sql = "SELECT\n"+
+				"    *\n"+
+				"FROM\n"+
+				"    booklist\n"+
+				"WHERE\n"+
+				"    title_book LIKE ?";
 		
+		List<Book> bookList = new ArrayList<Book>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%"+title+"%");
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				Book book = new Book();
+				book.setCodeBook(rs.getString("code_book"));
+				book.setTitleBook(rs.getString("title_book"));
+				book.setAuthBook(rs.getString("auth_book"));
+				book.setPubBook(rs.getString("pub_book"));
+				bookList.add(book);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return bookList;
 	}
 
 	@Override
-	public void getBook(String usrCode, String codeBook) {
+	public void getBook(String usrCode, String bookCode) {
 		
 		conn = getConnect();
 		String sql = "UPDATE booklist\n"+
@@ -22,7 +51,7 @@ public class LibFunc extends LibDao implements LibService {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, usrCode);
-			psmt.setString(2, codeBook);
+			psmt.setString(2, bookCode);
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 대여됨.");
@@ -37,27 +66,6 @@ public class LibFunc extends LibDao implements LibService {
 	@Override
 	public void checkBook() {
 		
-	}
-
-	@Override
-	public String getUsrCode(String usrId) {
-		conn = getConnect();
-		String sql = "select usr_code from usrlist where usr_id = ?";
-		String usrCode = null;
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, usrId);
-			rs = psmt.executeQuery();
-
-			while (rs.next()) {
-				usrCode = rs.getString("usr_code");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disconnect();
-		}
-		return usrCode;
 	}
 
 }

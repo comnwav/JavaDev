@@ -1,5 +1,6 @@
 package devLib;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LibApp {
@@ -13,16 +14,17 @@ public class LibApp {
 			System.out.println("1.로그인 / 2.회원가입");
 			int start = scn.nextInt();
 			if (start == 1) {
+				LibUser user = new LibUser();
+				LibAdminFunc laf = new LibAdminFunc();
 				System.out.printf("ID를 입력하세요>>");
-				String id = scn.next();
+				user.setUsrId(scn.next());
 				System.out.printf("비밀번호를 입력하세요>>");
-				String pass = scn.next();
-
+				user.setUsrPass(scn.next());
+				user.setUsrCode(laf.getUsrCode(user.getUsrId()));
+				
 				while (true) {
-
-					LibAdminFunc laf = new LibAdminFunc();
-					int menu = laf.loginLib(id, pass);
-					if (menu == 1) { // 관리자 로그인
+					int log = laf.loginLib(user.getUsrId(), user.getUsrPass());
+					if (log == 1) { // 관리자 로그인
 						Admin ad = new Admin();
 						System.out.println("1.도서등록 2.도서수정 3.도서삭제 4.반납도서입력 5.대여현황");
 						int temp = scn.nextInt();
@@ -42,12 +44,30 @@ public class LibApp {
 							break;
 						}
 
-					} else if (menu == 2) { // 사용자 로그인
+					} else if (log == 2) { // 사용자 로그인
+						LibGenFunc lgf = new LibGenFunc();
+						System.out.println("대여중목록");
+						List<Book> test3 = lgf.ocfList();
+						for (Book s : test3) {
+							System.out.println(s.toString2());
+						}
 						
+						System.out.println("리스트");
+						List<Book> test2 = lgf.availList();
+						for (Book s : test2) {
+							System.out.println(s.toString());
+						}
+						
+						System.out.println("제목으로검색");
+						List<Book> test = lgf.searchListByTitle(scn.nextLine());
+						scn.next();
+						System.out.println(test.toString());
+//						User usr = new User();
+//						usr.getBook(user);
 
-					} else if (menu == -1) {
+					} else if (log == -1) {
 						System.out.println("잘못된 로그인 정보입니다. 다시입력하세요.");
-					} else if (menu == 9) {
+					} else if (log == 9) {
 						break;
 					}
 				}
@@ -95,15 +115,18 @@ public class LibApp {
 		}
 
 		public void modiBook() {
-			LibGenFunc lgf = new LibGenFunc();
+//			LibGenFunc lgf = new LibGenFunc();
+			
 			LibAdminFunc laf = new LibAdminFunc();
 			Book bk = new Book();
 
 			System.out.printf("수정하실 도서의 고유코드를 입력하세요>> ");
 			String code = scn.next();
 			bk.setCodeBook(code);
-			System.out.println("선택하신 도서는 " + lgf.getTitle(code).titleBook + " - " + lgf.getTitle(code).authBook + " - "
-					+ lgf.getTitle(code).pubBook + "입니다.");
+			
+//			System.out.println("선택하신 도서는 " + lgf.getTitle(code).titleBook + " - " + lgf.getTitle(code).authBook + " - "
+//					+ lgf.getTitle(code).pubBook + "입니다.");
+			
 			System.out.printf("수정하실 제목을 입력하세요>> ");
 			bk.setTitleBook(scn.next());
 			System.out.printf("수정하실 저자를 입력하세요>> ");
@@ -115,12 +138,15 @@ public class LibApp {
 		}
 
 		public void rmBook() {
-			LibGenFunc lgf = new LibGenFunc();
+//			LibGenFunc lgf = new LibGenFunc();
+			
 			LibAdminFunc laf = new LibAdminFunc();
 			System.out.printf("삭제하실 도서의 고유코드를 입력하세요>> ");
 			String code = scn.next();
-			System.out.println("선택하신 도서는 " + lgf.getTitle(code).titleBook + " - " + lgf.getTitle(code).authBook + " - "
-					+ lgf.getTitle(code).pubBook + "입니다.");
+			
+//			System.out.println("선택하신 도서는 " + lgf.getTitle(code).titleBook + " - " + lgf.getTitle(code).authBook + " - "
+//					+ lgf.getTitle(code).pubBook + "입니다.");
+			
 			System.out.printf("삭제하시겠습니까? y/n >> ");
 			String yn = scn.next();
 
@@ -140,8 +166,14 @@ public class LibApp {
 
 	public class User {
 
-		public void getBook(String usrCode) {
+		public void getBook(LibUser user) {
+			System.out.println("대여하실 책코드");
+			String code = scn.next();
 			
+			LibFunc lf = new LibFunc();
+			lf.getBook(user.getUsrCode(), code);
+			
+			System.out.println("대여가 완료되었습니다.");
 		}
 
 	}

@@ -61,7 +61,14 @@ public class Book {
 	public void setDateBack(String dateBack) {
 		this.dateBack = dateBack;
 	}
+
+	@Override
+	public String toString() {
+		return "Book [titleBook=" + titleBook + ", authBook=" + authBook + ", pubBook=" + pubBook + "]";
+	}
 	
-	
+	public String toString2() {
+		return codeBook + dateBack;
+	}
 
 }

@@ -130,5 +130,26 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 		}
 
 	}
+	
+	@Override
+	public String getUsrCode(String usrId) {
+		conn = getConnect();
+		String sql = "select usr_code from usrlist where usr_id = ?";
+		String usrCode = null;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, usrId);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				usrCode = rs.getString("usr_code");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return usrCode;
+	}
 
 }
