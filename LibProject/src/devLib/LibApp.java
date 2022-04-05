@@ -43,9 +43,7 @@ public class LibApp {
 						}
 
 					} else if (menu == 2) { // 사용자 로그인
-						LibFunc lf = new LibFunc();
-						User usr = new User();
-						usr.getBook(lf.getUsrCode(id));
+						
 
 					} else if (menu == -1) {
 						System.out.println("잘못된 로그인 정보입니다. 다시입력하세요.");
@@ -143,10 +141,7 @@ public class LibApp {
 	public class User {
 
 		public void getBook(String usrCode) {
-			LibFunc lf = new LibFunc();
-			System.out.println("대여하실 책이름");
-			String codeBook = scn.next();
-			lf.getBook(usrCode, codeBook);
+			
 		}
 
 	}
