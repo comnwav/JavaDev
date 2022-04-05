@@ -20,7 +20,6 @@ public class LibDao {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("[Connecting to Datebase...]");
 		return conn;
 	}
 

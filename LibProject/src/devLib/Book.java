@@ -61,15 +61,7 @@ public class Book {
 	public void setDateBack(String dateBack) {
 		this.dateBack = dateBack;
 	}
+	
+	
 
-	public String getUsrCode() {
-		return usrCode;
-	}
-
-	public void setUsrCode(String usrCode) {
-		this.usrCode = usrCode;
-	}
-	
-	
-	
 }

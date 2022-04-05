@@ -1,7 +1,6 @@
 package devLib;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class LibAdminFunc extends LibDao implements LibAdminService {
 
@@ -29,15 +28,49 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 	}
 
 	@Override
-	public void modiBook(String codeBook) {
+	public void modiBook(Book book) {
+		System.out.println(book.toString());
 		conn = getConnect();
+		String sql = "UPDATE booklist\n"+
+				"SET\n"+
+				"    title_book = ?,\n"+
+				"    auth_book = ?,\n"+
+				"    pub_book = ?\n"+
+				"WHERE\n"+
+				"    code_book = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, book.getTitleBook());
+			psmt.setString(2, book.getAuthBook());
+			psmt.setString(3, book.getPubBook());
+			psmt.setString(4, book.getCodeBook());
+			
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 수정됨.");
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 	}
 
 	@Override
 	public void rmBook(String codeBook) {
-		// TODO Auto-generated method stub
-
+		conn = getConnect();
+		String sql = "DELETE FROM booklist\n" + "WHERE\n" + "    code_book = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, codeBook);
+			
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제됨.");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 	}
 
 	@Override
@@ -76,18 +109,11 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 
 	@Override
 	public void memberRegi(String usrId, String usrPass, int usrCode) {
-		
+
 		conn = getConnect();
-		String sql = "INSERT INTO usrlist (\n"+
-				"    usr_id,\n"+
-				"    usr_pass,\n"+
-				"    usr_code\n"+
-				") VALUES (\n"+
-				"    ?,\n"+
-				"    ?,\n"+
-				"    ?\n"+
-				")";
-		
+		String sql = "INSERT INTO usrlist (\n" + "    usr_id,\n" + "    usr_pass,\n" + "    usr_code\n" + ") VALUES (\n"
+				+ "    ?,\n" + "    ?,\n" + "    ?\n" + ")";
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, usrId);
@@ -102,7 +128,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 		} finally {
 			disconnect();
 		}
-		
+
 	}
 
 }

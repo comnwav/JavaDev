@@ -4,9 +4,9 @@ package devLib;
 public interface LibAdminService {
 	
 	public int loginLib(String usrId, String usrPass); // 로그인 + 로그아웃
-	public void memberRegi(String usrId, String usrPass, int usrCode);
+	public void memberRegi(String usrId, String usrPass, int usrCode); // 유저등록
 	public void addBook(Book book); // 도서 등록
-	public void modiBook(String codeBook); // 도서정보 수정
+	public void modiBook(Book book); // 도서정보 수정
 	public void rmBook(String codeBook); // 도서 삭제
 	public void backBook(String codeBook); // 반납된도서 입력
 	
