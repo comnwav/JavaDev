@@ -1,15 +1,17 @@
 package devLib;
 
+import java.util.Date;
+
 public class Book {
 	
 	String codeBook; // 책고유번호
 	String titleBook; // 제목
 	String authBook; // 저자
 	String pubBook; // 출판사
-	String dateAway; // 최초대여일
-	String dateBack; // 반납예정일
+	Date dateAway; // 최초대여일
+	Date dateBack; // 반납예정일
 	String usrCode; // 대여자
-	int rentCount;
+	int rentCount; // 대출횟수
 	
 	public Book() {
 		super();
@@ -63,29 +65,29 @@ public class Book {
 		this.pubBook = pubBook;
 	}
 
-	public String getDateAway() {
+	public Date getDateAway() {
 		return dateAway;
 	}
 
-	public void setDateAway(String dateAway) {
+	public void setDateAway(Date dateAway) {
 		this.dateAway = dateAway;
 	}
 
-	public String getDateBack() {
+	public Date getDateBack() {
 		return dateBack;
 	}
 
-	public void setDateBack(String dateBack) {
+	public void setDateBack(Date dateBack) {
 		this.dateBack = dateBack;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Book [titleBook=" + titleBook + ", authBook=" + authBook + ", pubBook=" + pubBook + "]";
+		return "Book [codeBook=" + codeBook + ", titleBook=" + titleBook + ", authBook=" + authBook + ", pubBook="
+				+ pubBook + ", dateAway=" + dateAway + ", dateBack=" + dateBack + ", usrCode=" + usrCode
+				+ ", rentCount=" + rentCount + "]";
 	}
+
 	
-	public String toString2() {
-		return codeBook + dateBack;
-	}
 
 }

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibGenFunc extends LibDao implements LibGen {
+public class LibGenFunc extends LibDao implements LibGenService {
 
 	@Override
 	public List<Book> searchListByTitle(String title) {
@@ -146,8 +146,8 @@ public class LibGenFunc extends LibDao implements LibGen {
 				book.setTitleBook(rs.getString("title_book"));
 				book.setAuthBook(rs.getString("auth_book"));
 				book.setPubBook(rs.getString("pub_book"));
-				book.setDateAway(rs.getString("date_away"));
-				book.setDateBack(rs.getString("date_back"));
+				book.setDateAway(rs.getDate("date_away"));
+				book.setDateBack(rs.getDate("date_back"));
 				bookList.add(book);
 				
 			}
@@ -187,33 +187,5 @@ public class LibGenFunc extends LibDao implements LibGen {
 		
 		return bookList;
 	}
-
-//	@Override
-//	public Book getTitle(String codeBook) {
-//		conn = getConnect();
-//		String sql = "SELECT\n"+
-//				"    title_book, auth_book, pub_book\n"+
-//				"FROM\n"+
-//				"    booklist\n"+
-//				"where\n"+
-//				"code_book = ?";
-//		Book bta = new Book();
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, codeBook);
-//			rs = psmt.executeQuery();
-//
-//			while (rs.next()) {
-//				bta.setTitleBook(rs.getString("title_book"));
-//				bta.setAuthBook(rs.getString("auth_book"));
-//				bta.setPubBook(rs.getString("pub_book"));
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			disconnect();
-//		}
-//		return bta;
-//	}
 
 }
