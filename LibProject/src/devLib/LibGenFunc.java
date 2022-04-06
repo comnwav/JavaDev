@@ -162,8 +162,30 @@ public class LibGenFunc extends LibDao implements LibGen {
 
 	@Override
 	public List<Book> bestList() {
-		// TODO Auto-generated method stub
-		return null;
+		conn = getConnect();
+		String sql = "select * from booklist order by rent_count desc";
+		
+		List<Book> bookList = new ArrayList<Book>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				Book book = new Book();
+				book.setTitleBook(rs.getString("title_book"));
+				book.setAuthBook(rs.getString("auth_book"));
+				book.setPubBook(rs.getString("pub_book"));
+				book.setRentCount(rs.getInt("rent_count"));
+				bookList.add(book);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		return bookList;
 	}
 
 //	@Override

@@ -31,20 +31,15 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 	public void modiBook(Book book) {
 		System.out.println(book.toString());
 		conn = getConnect();
-		String sql = "UPDATE booklist\n"+
-				"SET\n"+
-				"    title_book = ?,\n"+
-				"    auth_book = ?,\n"+
-				"    pub_book = ?\n"+
-				"WHERE\n"+
-				"    code_book = ?";
+		String sql = "UPDATE booklist\n" + "SET\n" + "    title_book = ?,\n" + "    auth_book = ?,\n"
+				+ "    pub_book = ?\n" + "WHERE\n" + "    code_book = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, book.getTitleBook());
 			psmt.setString(2, book.getAuthBook());
 			psmt.setString(3, book.getPubBook());
 			psmt.setString(4, book.getCodeBook());
-			
+
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 수정됨.");
 
@@ -62,10 +57,10 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, codeBook);
-			
+
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 삭제됨.");
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -75,8 +70,45 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 
 	@Override
 	public void backBook(String codeBook) {
-		// TODO Auto-generated method stub
+		conn = getConnect();
+		String sql = "select trunc(date_back - date_away - 15) as halt, usr_code from booklist where code_book = ?";
 
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, codeBook);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				System.out.println(rs.getInt("halt"));
+				if (rs.getInt("halt") > 0) {
+					{
+						String usrCode = rs.getString("usr_code");
+						int haltDay = rs.getInt("halt");
+						String sql2 = "update usrlist set usr_halt = ? where usr_code = ?";
+						psmt = conn.prepareStatement(sql2);
+						psmt.setInt(1, haltDay);
+						psmt.setString(2, usrCode);
+						psmt.executeUpdate();
+						
+						String sql3 = "update booklist set date_away = null, date_back = null, usr_code = null where code_book= ?";
+						psmt = conn.prepareStatement(sql3);
+						psmt.setString(1, codeBook);
+						psmt.executeUpdate();
+					}
+				} else {
+					String sql4 = "update booklist set date_away = null, date_back = null, usr_code = null where code_book= ?";
+					psmt = conn.prepareStatement(sql4);
+					psmt.setString(1, codeBook);
+					psmt.executeUpdate();
+				}
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 	}
 
 	@Override
@@ -130,7 +162,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 		}
 
 	}
-	
+
 	@Override
 	public String getUsrCode(String usrId) {
 		conn = getConnect();

@@ -15,5 +15,7 @@ public interface LibGen {
 	
 	// 부가조회기능
 //	public Book getTitle(String codeBook); // 코드를 통한 제목 및 작가 단권 검색
-
+// 책정보 - 좋아요, 한줄평, 평점
+	
+	
 }

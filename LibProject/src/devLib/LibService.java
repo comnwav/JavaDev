@@ -9,5 +9,4 @@ public interface LibService {
 	public void getBook(String usrCode, String bookCode); // 도서 대여기능
 	public void checkBook(); // 대여 가능 조회
 	
-	
 }

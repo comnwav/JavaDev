@@ -9,9 +9,26 @@ public class Book {
 	String dateAway; // 최초대여일
 	String dateBack; // 반납예정일
 	String usrCode; // 대여자
+	int rentCount;
 	
 	public Book() {
 		super();
+	}
+	
+	public String getUsrCode() {
+		return usrCode;
+	}
+
+	public void setUsrCode(String usrCode) {
+		this.usrCode = usrCode;
+	}
+
+	public int getRentCount() {
+		return rentCount;
+	}
+
+	public void setRentCount(int rentCount) {
+		this.rentCount = rentCount;
 	}
 
 	public String getCodeBook() {

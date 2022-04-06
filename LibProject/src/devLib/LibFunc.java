@@ -9,12 +9,7 @@ public class LibFunc extends LibDao implements LibService {
 	@Override
 	public List<Book> infoUsr() {
 		conn = getConnect();
-		String sql = "SELECT\n"+
-				"    *\n"+
-				"FROM\n"+
-				"    booklist\n"+
-				"WHERE\n"+
-				"    title_book LIKE ?";
+		
 		
 		List<Book> bookList = new ArrayList<Book>();
 		try {
@@ -24,7 +19,6 @@ public class LibFunc extends LibDao implements LibService {
 
 			while (rs.next()) {
 				Book book = new Book();
-				book.setCodeBook(rs.getString("code_book"));
 				book.setTitleBook(rs.getString("title_book"));
 				book.setAuthBook(rs.getString("auth_book"));
 				book.setPubBook(rs.getString("pub_book"));
@@ -44,7 +38,7 @@ public class LibFunc extends LibDao implements LibService {
 		conn = getConnect();
 		String sql = "UPDATE booklist\n"+
 				"SET\n"+
-				"    date_away = sysdate, usr_code = ?, date_back = sysdate+15\n"+
+				"    date_away = sysdate, usr_code = ?, date_back = sysdate+15\n, rent_count = rent_count+1"+
 				"WHERE\n"+
 				"    code_book = ?";
 		
