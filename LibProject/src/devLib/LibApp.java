@@ -57,7 +57,7 @@ public class LibApp {
 						System.out.println("==== 연체 중 도서목록 =====");
 						for (Book s : lb) {
 							
-							int dd = s.getDateAway()
+							int dd = s.getDateAway().getYear();
 							System.out.println(dd);
 						}
 						
