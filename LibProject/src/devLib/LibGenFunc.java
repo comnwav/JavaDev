@@ -102,42 +102,42 @@ public class LibGenFunc extends LibDao implements LibGenService {
 		return bookList;
 	}
 
-	@Override
-	public List<Book> availList() {
-		conn = getConnect();
-		String sql = "select * from booklist where usr_code is null";
-		
-		List<Book> bookList = new ArrayList<Book>();
-		try {
-			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery();
-			
-			while (rs.next()) {
-				Book book = new Book();
-				book.setCodeBook(rs.getString("code_book"));
-				book.setTitleBook(rs.getString("title_book"));
-				book.setAuthBook(rs.getString("auth_book"));
-				book.setPubBook(rs.getString("pub_book"));
-				bookList.add(book);
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disconnect();
-		}
-		
-		return bookList;
-	}
+//	@Override
+//	public List<Book> availList() {
+//		conn = getConnect();
+//		String sql = "select * from booklist where usr_code is null";
+//		
+//		List<Book> bookList = new ArrayList<Book>();
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			rs = psmt.executeQuery();
+//			
+//			while (rs.next()) {
+//				Book book = new Book();
+//				book.setCodeBook(rs.getString("code_book"));
+//				book.setTitleBook(rs.getString("title_book"));
+//				book.setAuthBook(rs.getString("auth_book"));
+//				book.setPubBook(rs.getString("pub_book"));
+//				bookList.add(book);
+//				
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//		
+//		return bookList;
+//	}
 
 	@Override
-	public List<Book> ocfList() {
+	public List<Book> ocfList(String usrCode) {
 		conn = getConnect();
-		String sql = "select * from booklist where usr_code is not null";
-		
+		String sql = "select * from booklist where usr_code = ?";
 		List<Book> bookList = new ArrayList<Book>();
 		try {
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, usrCode);
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
@@ -148,6 +148,8 @@ public class LibGenFunc extends LibDao implements LibGenService {
 				book.setPubBook(rs.getString("pub_book"));
 				book.setDateAway(rs.getDate("date_away"));
 				book.setDateBack(rs.getDate("date_back"));
+				book.setUsrCode(rs.getString("usr_code"));
+				book.setRentCount(rs.getInt("rent_count"));
 				bookList.add(book);
 				
 			}
@@ -169,15 +171,16 @@ public class LibGenFunc extends LibDao implements LibGenService {
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
-			
-			while (rs.next()) {
+			int cnt = 0;
+			while (cnt < 5) {
+				rs.next();
 				Book book = new Book();
 				book.setTitleBook(rs.getString("title_book"));
 				book.setAuthBook(rs.getString("auth_book"));
 				book.setPubBook(rs.getString("pub_book"));
 				book.setRentCount(rs.getInt("rent_count"));
 				bookList.add(book);
-				
+				cnt++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

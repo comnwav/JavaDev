@@ -88,6 +88,12 @@ public class Book {
 				+ ", rentCount=" + rentCount + "]";
 	}
 
+	public String toStringForBest() {
+		return titleBook +"	" + "	| " + authBook + "	| " + pubBook + "	| " + rentCount;
+	}
 	
+	public String toStringForOcf() {
+		return titleBook +"	" + "	| " + authBook + "	| " + pubBook + "	| " + dateBack;
+	}
 
 }

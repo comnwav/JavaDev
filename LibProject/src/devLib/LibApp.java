@@ -1,5 +1,7 @@
 package devLib;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LibApp {
@@ -22,7 +24,6 @@ public class LibApp {
 					user.setUsrPass(scn.next());
 					user.setUsrCode(laf.getUsrCode(user.getUsrId()));
 					int log = laf.loginLib(user.getUsrId(), user.getUsrPass());
-
 					if (log == 1) { // 관리자 로그인
 						while (true) {
 							Admin ad = new Admin();
@@ -46,6 +47,27 @@ public class LibApp {
 						}
 
 					} else if (log == 2) { // 사용자 로그인
+						LibGenFunc lgf = new LibGenFunc();
+						List<Book> lb = new ArrayList<Book>();
+						System.out.println("==== 대여 중 도서 목록 =====");
+						lb = lgf.ocfList(user.getUsrCode());
+						for (Book s : lb) {
+							System.out.println(s.toStringForOcf());
+						}
+						System.out.println("==== 연체 중 도서목록 =====");
+						for (Book s : lb) {
+							
+							int dd = s.getDateAway()
+							System.out.println(dd);
+						}
+						
+//						lb = lgf.bestList();
+//						for (Book s : lb) {
+//							System.out.println(s.toStringForBest());
+//						}
+						
+						
+						
 						break;
 					} else if (log == -1) {
 						System.out.println("잘못된 로그인 정보입니다. 다시입력하세요.");
