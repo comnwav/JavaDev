@@ -215,7 +215,6 @@ public class LibApp {
 								System.out.println("로그아웃 합니다.");
 								break;
 							}
-//							break;
 						}
 						break;
 						
