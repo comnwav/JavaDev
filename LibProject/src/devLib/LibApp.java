@@ -129,7 +129,7 @@ public class LibApp {
 								}
 								System.out.println("=======================");
 								while (true) {
-									System.out.println("1.책 상제정보 2.돌아가기");
+									System.out.println("1.책 상세정보 2.돌아가기");
 									System.out.printf("입력>> ");
 									int info = 0;
 									try {
@@ -199,7 +199,7 @@ public class LibApp {
 								}
 								System.out.println("=======================");
 								while (true) {
-									System.out.println("1.책 상제정보 2.돌아가기");
+									System.out.println("1.책 상세정보 2.돌아가기");
 									System.out.printf("입력>> ");
 									int info = 0;
 									try {

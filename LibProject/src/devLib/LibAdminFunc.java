@@ -77,6 +77,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 				"SET\n"+
 				"    date_away = sysdate,\n"+
 				"    date_back = sysdate + 15,\n"+
+				"    rent_count = rent_count + 1,\n"+
 				"    usr_code = ?\n"+
 				"WHERE\n"+
 				"    code_book = ?";
