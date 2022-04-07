@@ -4,7 +4,6 @@ package devLib;
 public interface LibService {
 
 //	--한줄평, 좋아요, 평점
-//	-예약
 //	
 	
 }

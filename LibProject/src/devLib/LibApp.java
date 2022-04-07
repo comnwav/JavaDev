@@ -66,7 +66,9 @@ public class LibApp {
 								System.out.println("관리자 계정에서 로그아웃 합니다");
 								break;
 							}
+							break;
 						}
+						break;
 
 					} else if (log == 2) { // 사용자 로그인
 						LibGenFunc lgf = new LibGenFunc();
@@ -214,8 +216,10 @@ public class LibApp {
 								System.out.println("로그아웃 합니다.");
 								break;
 							}
-
+							break;
 						}
+						break;
+						
 					} else if (log == -1) {
 						System.out.println("잘못된 로그인 정보입니다. 다시입력하세요.");
 					}
@@ -321,17 +325,37 @@ public class LibApp {
 		}
 
 		public void rentBook() {
-			LibAdminFunc laf = new LibAdminFunc();
+			while (true) {
+				LibAdminFunc laf = new LibAdminFunc();
+				LibGenFunc lgf = new LibGenFunc();
+				System.out.printf("대출할 사용자 코드입력 [뒤로가기는 9입력] >> ");
+				String codeUser = scn.next();
+				if (codeUser.equals("9")) {
+					break;
+				} else {
+					List<Book> lb = lgf.ocfList(codeUser);
+					for (Book s : lb) {
+						Date now = new Date();
+						long calDate = now.getTime() - s.getDateAway().getTime();
+						long calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
+						if (calDay > 15) {
+							System.out.println("해당 사용자는 연체중인 도서가 있습니다. 대여할 수 없습니다.");
+							break;
+						} else {
+							System.out.printf("대출할 도서 코드 입력>> ");
+							String codeBook = scn.next();
+							laf.rentBook(codeUser, codeBook);
+							System.out.println(">> 대여가 완료되었습니다.");
+							System.out.println(">> 반납일은 " + laf.getInfoBook(codeBook).getDateBack() + " 입니다.");
+							System.out.println(">> 대여기간은 대여일로 부터 15일 입니다.");
+							System.out.println(">> 연체일 수 만큼 대여가 중지됩니다.");
+							break;
+						}
+					}
 
-			System.out.printf("대출할 사용자 코드입력>> ");
-			String codeUser = scn.next();
-			System.out.printf("대출할 도서 코드 입력>> ");
-			String codeBook = scn.next();
-			laf.rentBook(codeUser, codeBook);
-			System.out.println(">> 대여가 완료되었습니다.");
-			System.out.println(">> 반납일은 " + laf.getInfoBook(codeBook).getDateBack() + " 입니다.");
-			System.out.println(">> 대여기간은 대여일로 부터 15일 입니다.");
-			System.out.println(">> 연체일 수 만큼 대여가 중지됩니다.");
+				}
+
+			}
 		}
 	}
 
