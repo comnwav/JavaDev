@@ -29,7 +29,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 
 	@Override
 	public void modiBook(Book book) {
-		System.out.println(book.toString());
+		
 		conn = getConnect();
 		String sql = "UPDATE booklist\n" + "SET\n" + "    title_book = ?,\n" + "    auth_book = ?,\n"
 				+ "    pub_book = ?\n" + "WHERE\n" + "    code_book = ?";
@@ -204,8 +204,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 			psmt.setString(1, usr.getUsrId());
 			psmt.setString(2, usr.getUsrPass());
 			
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 입력됨.");
+			psmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -256,6 +255,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 				book.setDateBack(rs.getDate("date_back"));
 				book.setUsrCode(rs.getString("usr_code"));
 				book.setRentCount(rs.getInt("rent_count"));
+				book.setDescBook(rs.getString("desc_book"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

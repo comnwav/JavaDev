@@ -12,7 +12,16 @@ public class Book {
 	Date dateBack; // 반납예정일
 	String usrCode; // 대여자
 	int rentCount; // 대출횟수
+	String descBook; // 책설명
 	
+	public String getDescBook() {
+		return descBook;
+	}
+
+	public void setDescBook(String descBook) {
+		this.descBook = descBook;
+	}
+
 	public Book() {
 		super();
 	}
@@ -83,17 +92,16 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return "Book [codeBook=" + codeBook + ", titleBook=" + titleBook + ", authBook=" + authBook + ", pubBook="
-				+ pubBook + ", dateAway=" + dateAway + ", dateBack=" + dateBack + ", usrCode=" + usrCode
-				+ ", rentCount=" + rentCount + "]";
-	}
-
-	public String toStringForBest() {
-		return titleBook +"	" + "	| " + authBook + "	| " + pubBook + "	| " + rentCount;
+		return codeBook + "|" + titleBook + "|" + authBook + "|" + pubBook;
 	}
 	
-	public String toStringForOcf() {
-		return titleBook +"	" + "	| " + authBook + "	| " + pubBook + "	| " + dateBack;
+	public void toStringForInfo() {
+		System.out.println("| 책제목 | 저자 | 출판사 | 대여횟수 | 반납예정일 |");
+		System.out.println("|" + titleBook +"|" + authBook + "|" + pubBook + "|" + rentCount + "|" + dateBack + "|");
+		System.out.println("| 한 줄 책보기 |");
+		System.out.println("==================================================");
+		System.out.println(descBook);
+		System.out.println("==================================================");
 	}
 
 }

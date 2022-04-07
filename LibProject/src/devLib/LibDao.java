@@ -16,7 +16,7 @@ public class LibDao {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "comnwav", "comnwav");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.35:1521:xe", "comnwav", "comnwav");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

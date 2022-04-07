@@ -102,34 +102,6 @@ public class LibGenFunc extends LibDao implements LibGenService {
 		return bookList;
 	}
 
-//	@Override
-//	public List<Book> availList() {
-//		conn = getConnect();
-//		String sql = "select * from booklist where usr_code is null";
-//		
-//		List<Book> bookList = new ArrayList<Book>();
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			rs = psmt.executeQuery();
-//			
-//			while (rs.next()) {
-//				Book book = new Book();
-//				book.setCodeBook(rs.getString("code_book"));
-//				book.setTitleBook(rs.getString("title_book"));
-//				book.setAuthBook(rs.getString("auth_book"));
-//				book.setPubBook(rs.getString("pub_book"));
-//				bookList.add(book);
-//				
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			disconnect();
-//		}
-//		
-//		return bookList;
-//	}
-
 	@Override
 	public List<Book> ocfList(String usrCode) {
 		conn = getConnect();
