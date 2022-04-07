@@ -66,7 +66,6 @@ public class LibApp {
 								System.out.println("관리자 계정에서 로그아웃 합니다");
 								break;
 							}
-							break;
 						}
 						break;
 
@@ -216,7 +215,7 @@ public class LibApp {
 								System.out.println("로그아웃 합니다.");
 								break;
 							}
-							break;
+//							break;
 						}
 						break;
 						
