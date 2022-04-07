@@ -12,34 +12,10 @@ public class Book {
 	Date dateBack; // 반납예정일
 	String usrCode; // 대여자
 	int rentCount; // 대출횟수
-	String descBook; // 책설명
+//	String descBook; // 책설명
 	
-	public String getDescBook() {
-		return descBook;
-	}
-
-	public void setDescBook(String descBook) {
-		this.descBook = descBook;
-	}
-
 	public Book() {
 		super();
-	}
-	
-	public String getUsrCode() {
-		return usrCode;
-	}
-
-	public void setUsrCode(String usrCode) {
-		this.usrCode = usrCode;
-	}
-
-	public int getRentCount() {
-		return rentCount;
-	}
-
-	public void setRentCount(int rentCount) {
-		this.rentCount = rentCount;
 	}
 
 	public String getCodeBook() {
@@ -89,19 +65,48 @@ public class Book {
 	public void setDateBack(Date dateBack) {
 		this.dateBack = dateBack;
 	}
-	
+
+	public String getUsrCode() {
+		return usrCode;
+	}
+
+	public void setUsrCode(String usrCode) {
+		this.usrCode = usrCode;
+	}
+
+	public int getRentCount() {
+		return rentCount;
+	}
+
+	public void setRentCount(int rentCount) {
+		this.rentCount = rentCount;
+	}
+
+//	public String getDescBook() {
+//		return descBook;
+//	}
+//
+//	public void setDescBook(String descBook) {
+//		this.descBook = descBook;
+//	}
+
 	@Override
 	public String toString() {
+		
 		return codeBook + "|" + titleBook + "|" + authBook + "|" + pubBook;
 	}
 	
 	public void toStringForInfo() {
-		System.out.println("| 책제목 | 저자 | 출판사 | 대여횟수 | 반납예정일 |");
-		System.out.println("|" + titleBook +"|" + authBook + "|" + pubBook + "|" + rentCount + "|" + dateBack + "|");
-		System.out.println("| 한 줄 책보기 |");
-		System.out.println("==================================================");
-		System.out.println(descBook);
-		System.out.println("==================================================");
+		System.out.println("========================");
+		System.out.println("제목	: " + titleBook);
+		System.out.println("저자	: " + authBook);
+		System.out.println("출판사	: " + pubBook);
+		System.out.println("대여횟수	: " + rentCount+"회");
+		System.out.println("반납예정일	: " + dateBack);
+		System.out.println("========================");
+		System.out.println("======= 도서 소개 =========");
+//		System.out.println(descBook);
+		System.out.println("========================");
 	}
 
 }

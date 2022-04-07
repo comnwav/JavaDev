@@ -14,12 +14,14 @@ public class LibApp {
 
 		while (true) {
 			int start = 0;
-			System.out.println("===== 예담 도서관에 오신것을 환영합니다. =====");
-			System.out.println("1.로그인 / 2.일반 사용자 회원가입");
-			System.out.println("// <Test>");
-			System.out.println("// 도서관리는 관리자 계정으로 로그인하세요 ID : admin / 비밀번호 : admin");
 			System.out.println("// 도서등록, 수정, 삭제, 대출, 반납은 관리자 계정에서만 가능합니다");
-			System.out.println("// 도서코드는 a1001 부터 a9999 까지 회원번호는 1001 부터 9999 까지 자동할당");
+			System.out.println("// 도서관리는 관리자 계정으로 로그인하세요 ");
+			System.out.println("// ID : admin / 비밀번호 : admin");
+			System.out.println("");
+			System.out.println("==================================");
+			System.out.println("=== 자바라자바 도서관에 오신것을 환영합니다. ===");
+			System.out.println("==================================");
+			System.out.println("1.로그인 / 2.일반 사용자 회원가입");
 			System.out.printf("입력>> ");
 			try {
 				start = scn.nextInt();
@@ -73,6 +75,7 @@ public class LibApp {
 						LibGenFunc lgf = new LibGenFunc();
 						List<Book> lb = new ArrayList<Book>();
 						while (true) {
+							System.out.println("");
 							System.out.println("===========================================");
 							System.out.println(">>>>> 안녕하세요!! " + user.getUsrId() + "님 환영합니다! <<<<");
 							System.out.println("===========================================");
@@ -119,9 +122,12 @@ public class LibApp {
 								System.out.printf("도서 제목을 입력하세요>> ");
 								lb = lgf.searchListByTitle(scn.next());
 								scn.nextLine();
+								System.out.println("=======================");
+								System.out.println("도서코드 | 제목 | 저자 | 출판사");
 								for (Book s : lb) {
 									System.out.println(s.toString());
 								}
+								System.out.println("=======================");
 								while (true) {
 									System.out.println("1.책 상제정보 2.돌아가기");
 									System.out.printf("입력>> ");
@@ -151,11 +157,14 @@ public class LibApp {
 								System.out.printf("저자을 입력하세요>> ");
 								lb = lgf.searchListByAuth(scn.next());
 								scn.nextLine();
+								System.out.println("=======================");
+								System.out.println("도서코드 | 제목 | 저자 | 출판사");
 								for (Book s : lb) {
 									System.out.println(s.toString());
 								}
+								System.out.println("=======================");
 								while (true) {
-									System.out.println("1.책 상제정보 2.돌아가기");
+									System.out.println("1.책 상세정보 2.돌아가기");
 									System.out.printf("입력>> ");
 									int info = 0;
 									try {
@@ -183,9 +192,12 @@ public class LibApp {
 								System.out.printf("출판사를 입력하세요>> ");
 								lb = lgf.searchListByPub(scn.next());
 								scn.nextLine();
+								System.out.println("=======================");
+								System.out.println("도서코드 | 제목 | 저자 | 출판사");
 								for (Book s : lb) {
 									System.out.println(s.toString());
 								}
+								System.out.println("=======================");
 								while (true) {
 									System.out.println("1.책 상제정보 2.돌아가기");
 									System.out.printf("입력>> ");
@@ -258,6 +270,7 @@ public class LibApp {
 					System.out.println();
 					System.out.println("[" + usr.getUsrId() + "님의 회원등록이 완료되었습니다. 회원 코드는 "
 							+ laf.getUsrCode(usr.getUsrId()) + " 입니다.]");
+					System.out.println("");
 					break;
 				} else {
 					System.out.println("비밀번호가 일치하지않습니다.");
@@ -306,68 +319,87 @@ public class LibApp {
 
 			if (yn.equals("y")) {
 				laf.rmBook(code);
-				System.out.println("삭제가 완료되었습니다.");
+				System.out.println(">> 삭제가 완료되었습니다.");
 			} else if (yn.equals("n")) {
-				System.out.println("삭제가 취소되었습니다.");
+				System.out.println(">> 삭제가 취소되었습니다.");
 			}
 
 		}
 
 		public void backBook() {
-			System.out.println("// 오늘 날짜로 반환 됩니다.");
-			System.out.println("// 연체 기능확인시 DB에서 대여 날짜 수정 및 시스템 날짜를 15일 이전으로 수정 후 test 부탁드립니다.");
-			System.out.printf("반납할 도서코드 입력>> ");
+
+			Book book = new Book();
+			LibUser user = new LibUser();
 			LibAdminFunc laf = new LibAdminFunc();
-			laf.backBook(scn.next());
-			System.out.println("반환완료");
+
+			System.out.printf("반납할 도서코드를 입력하세요>> ");
+			book = laf.getInfoBook(scn.next());
+			scn.nextLine();
+
+			long calDay = 0;
+			Date now = new Date();
+			long calDate = now.getTime() - book.getDateAway().getTime();
+			calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
+
+			if (calDay > 0) {
+				user.setUsrHalt(calDay);
+				laf.backBook(book, user);
+				System.out.println("----------------------");
+				System.out.println(">> 정상적으로 반납되었습니다.");
+				System.out.println(">> 연체일수는 " + calDay + "일 입니다.");
+				System.out.println("----------------------");
+			} else {
+				laf.backBook(book, user);
+				System.out.println("----------------------");
+				System.out.println(">> 정상적으로 반납되었습니다.");
+				System.out.println("----------------------");
+			}
+
 		}
 
 		public void rentBook() {
+			
+			Book book = new Book();
+			LibUser user = new LibUser();
+			LibAdminFunc laf = new LibAdminFunc();
+			LibGenFunc lgf = new LibGenFunc();
+
+			System.out.printf("대여할 도서코드를 입력하세요>> ");
+			book = laf.getInfoBook(scn.next());
+			scn.nextLine();
+
 			while (true) {
-				LibAdminFunc laf = new LibAdminFunc();
-				LibGenFunc lgf = new LibGenFunc();
-				System.out.printf("대출할 사용자 코드입력 [뒤로가기는 9입력] >> ");
-				String codeUser = scn.next();
-				if (codeUser.equals("9")) {
-					break;
-				} else {
-					List<Book> lb = lgf.ocfList(codeUser);
-
+				if (book.getDateAway() == null) {
+					System.out.printf("사용자 코드를 입력하세요>> ");
+					user = laf.getInforUser(scn.nextLine());
+					List<Book> lb = lgf.ocfList(user.getUsrCode());
+					long calDay = 0;
 					for (Book s : lb) {
-						if (s.getDateAway() == null) {
-							System.out.printf("대출할 도서 코드 입력>> ");
-							String codeBook = scn.next();
-							laf.rentBook(codeUser, codeBook);
-							System.out.println(">> 대여가 완료되었습니다.");
-							System.out.println(">> 반납일은 " + laf.getInfoBook(codeBook).getDateBack() + " 입니다.");
-							System.out.println(">> 대여기간은 대여일로 부터 15일 입니다.");
-							System.out.println(">> 연체일 수 만큼 대여가 중지됩니다.");
-							break;
-						} else {
-							Date now = new Date();
-							long calDate = now.getTime() - s.getDateAway().getTime();
-							long calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
-							if (calDay > 15) {
-								System.out.println("해당 사용자는 연체중인 도서가 있습니다. 대여할 수 없습니다.");
-								break;
-							} else {
-								System.out.printf("대출할 도서 코드 입력>> ");
-								String codeBook = scn.next();
-								laf.rentBook(codeUser, codeBook);
-								System.out.println(">> 대여가 완료되었습니다.");
-								System.out.println(">> 반납일은 " + laf.getInfoBook(codeBook).getDateBack() + " 입니다.");
-								System.out.println(">> 대여기간은 대여일로 부터 15일 입니다.");
-								System.out.println(">> 연체일 수 만큼 대여가 중지됩니다.");
-								break;
-							}
-
-						}
-
+						Date now = new Date();
+						long calDate = now.getTime() - s.getDateAway().getTime();
+						calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
 					}
-				}
+					if (calDay > 0 || user.getUsrHalt() > 0) {
+						System.out.println("------------------------------------------");
+						System.out.println(">> 해당 사용자는 대여중지 중이거나 연체 중인 도서가 있습니다.");
+						System.out.println("------------------------------------------");
+						break;
+					} else {
+						laf.rentBook(user.getUsrCode(), book.getCodeBook());
+						System.out.println("----------------------------");
+						System.out.println(">> 대여기간은 대여일로 부터 15일 입니다.");
+						System.out.println(">> 연체일 수 만큼 대여가 중지됩니다.");
+						System.out.println("----------------------------");
+						break;
+					}
 
+				} else {
+					System.out.println(">> 해당 도서가 대여 중입니다.");
+					break;
+				}
 			}
 		}
+
 	}
 
 }
