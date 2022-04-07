@@ -186,7 +186,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 				book.setDateBack(rs.getDate("date_back"));
 				book.setUsrCode(rs.getString("usr_code"));
 				book.setRentCount(rs.getInt("rent_count"));
-//				book.setDescBook(rs.getString("desc_book"));
+				book.setDescBook(rs.getString("desc_book"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

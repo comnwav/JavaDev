@@ -12,7 +12,7 @@ public class Book {
 	Date dateBack; // 반납예정일
 	String usrCode; // 대여자
 	int rentCount; // 대출횟수
-//	String descBook; // 책설명
+	String descBook; // 책설명
 	
 	public Book() {
 		super();
@@ -82,13 +82,13 @@ public class Book {
 		this.rentCount = rentCount;
 	}
 
-//	public String getDescBook() {
-//		return descBook;
-//	}
-//
-//	public void setDescBook(String descBook) {
-//		this.descBook = descBook;
-//	}
+	public String getDescBook() {
+		return descBook;
+	}
+
+	public void setDescBook(String descBook) {
+		this.descBook = descBook;
+	}
 
 	@Override
 	public String toString() {
@@ -105,7 +105,7 @@ public class Book {
 		System.out.println("반납예정일	: " + dateBack);
 		System.out.println("========================");
 		System.out.println("======= 도서 소개 =========");
-//		System.out.println(descBook);
+		System.out.println(descBook);
 		System.out.println("========================");
 	}
 
