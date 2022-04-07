@@ -1,6 +1,7 @@
 package devLib;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -85,8 +86,9 @@ public class LibApp {
 							System.out.println("============== 연체 중 도서목록 ================");
 							System.out.println("   제목   |   저자   |   출판사   |   연체일수   ");
 							for (Book s : lb) {
-								long calDate = s.getDateBack().getTime() - s.getDateAway().getTime();
-								long calDay = calDate / (24 * 60 * 60 * 1000);
+								Date now = new Date();
+								long calDate = now.getTime() - s.getDateAway().getTime();
+								long calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
 								if (calDay > 15) {
 									System.out.println("|" + s.getTitleBook() + "|" + s.getAuthBook() + "|" + s.pubBook
 											+ "|" + calDay + "일" + "|");
