@@ -174,7 +174,7 @@ public class Admin {
 					System.out.println("----------------------------");
 					break;
 				}
-
+				
 			} else {
 				System.out.println(">> 해당 도서가 대여 중입니다.");
 				break;
