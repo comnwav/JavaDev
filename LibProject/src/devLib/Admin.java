@@ -7,6 +7,16 @@ import java.util.Scanner;
 public class Admin {
 
 	static Scanner scn = new Scanner(System.in);
+	
+	public void allList() {
+		LibGenFunc lgf = new LibGenFunc();
+		
+		List<Book> lb = lgf.allList();
+		for (Book s : lb) {
+			System.out.println(s.toString());
+		}
+		
+	}
 
 	public void addUser() {
 		LibUser usr = new LibUser();
@@ -105,10 +115,12 @@ public class Admin {
 		Date now = new Date();
 		long calDate = now.getTime() - book.getDateAway().getTime();
 		calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
+		user.setCalDay(calDay);
 
-		if (calDay > 0) {
-			user.setUsrHalt(calDay);
-			laf.backBook(book, user);
+		if (user.getCalDay() > 0) {
+			laf.backBook2(book, user);
+			System.out.println(user.getCalDay());
+			System.out.println(book.getUsrCode());
 			System.out.println("----------------------");
 			System.out.println(">> 정상적으로 반납되었습니다.");
 			System.out.println(">> 연체일수는 " + calDay + "일 입니다.");
@@ -136,7 +148,8 @@ public class Admin {
 		while (true) {
 			if (book.getDateAway() == null) {
 				System.out.printf("사용자 코드를 입력하세요>> ");
-				user = laf.getInforUser(scn.nextLine());
+				user = laf.getInforUser(scn.next());
+				scn.nextLine();
 				List<Book> lb = lgf.ocfList(user.getUsrCode());
 				long calDay = 0;
 				for (Book s : lb) {
@@ -144,7 +157,11 @@ public class Admin {
 					long calDate = now.getTime() - s.getDateAway().getTime();
 					calDay = (calDate / (24 * 60 * 60 * 1000)) - 15;
 				}
-				if (calDay > 0 || user.getUsrHalt() > 0) {
+				
+				System.out.println(user.getCalDay());
+				System.out.println(calDay);
+				
+				if (calDay > 0 || user.getCalDay() > 0) {
 					System.out.println("------------------------------------------");
 					System.out.println(">> 해당 사용자는 대여중지 중이거나 연체 중인 도서가 있습니다.");
 					System.out.println("------------------------------------------");

@@ -1,12 +1,23 @@
 package devLib;
 
+import java.util.Date;
+
 public class LibUser {
 	
 	String usrId; // 유저 ID
 	String usrPass; // 유저 Password
 	String usrCode; // 유저 고유코드
-	long usrHalt; // 정지날짜수
+	long calDay; // 정지날짜수
+	Date haltDate; // 대여중지 해제 날짜
 	
+	public Date getHaltDate() {
+		return haltDate;
+	}
+
+	public void setHaltDate(Date haltDate) {
+		this.haltDate = haltDate;
+	}
+
 	public String getUsrId() {
 		return usrId;
 	}
@@ -31,24 +42,18 @@ public class LibUser {
 		this.usrCode = usrCode;
 	}
 
-	public long getUsrHalt() {
-		return usrHalt;
+	
+
+	public long getCalDay() {
+		return calDay;
 	}
 
-	public void setUsrHalt(long usrHalt) {
-		this.usrHalt = usrHalt;
+	public void setCalDay(long calDay) {
+		this.calDay = calDay;
 	}
 
 	public LibUser() {
 		super();
 	}
-	
-	@Override
-	public String toString() {
-		return "LibUser [usrId=" + usrId + ", usrPass=" + usrPass + ", usrCode=" + usrCode + ", usrHalt=" + usrHalt
-				+ "]";
-	}
-	
-	
 
 }

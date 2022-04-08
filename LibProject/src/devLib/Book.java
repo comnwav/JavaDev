@@ -93,7 +93,7 @@ public class Book {
 	@Override
 	public String toString() {
 		
-		return codeBook + "|" + titleBook + "|" + authBook + "|" + pubBook;
+		return codeBook + "|" + titleBook + "|" + authBook + "|" + pubBook + "|" +  dateBack + "|" + usrCode + "|" + rentCount +"|";
 	}
 	
 	public void toStringForInfo() {

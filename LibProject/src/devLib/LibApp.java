@@ -33,6 +33,7 @@ public class LibApp {
 			if (start == 1) {
 				LibUser user = new LibUser();
 				LibAdminFunc laf = new LibAdminFunc();
+				
 				while (true) {
 					System.out.printf("ID를 입력하세요>> ");
 					user.setUsrId(scn.next());
@@ -44,7 +45,7 @@ public class LibApp {
 					if (log == 1) { // 관리자 로그인
 						while (true) {
 							Admin ad = new Admin();
-							System.out.println("1.도서등록 2.도서수정 3.도서삭제 4.도서대출 5.반납도서입력 9. 로그아웃");
+							System.out.println("1.도서등록 2.도서수정 3.도서삭제 4.도서대출 5.반납도서입력 8.교수님확인용 전체리스트 9.로그아웃");
 							System.out.printf("입력>> ");
 							int temp = 0;
 							try {
@@ -64,6 +65,9 @@ public class LibApp {
 								ad.rentBook();
 							} else if (temp == 5) {
 								ad.backBook();
+							} else if (temp == 8) {
+								System.out.println("도서코드 | 제목 | 저자 | 출판사 | 반납예정일 | 대여자 | 총대여수");
+								ad.allList();
 							} else if (temp == 9) {
 								System.out.println("관리자 계정에서 로그아웃 합니다");
 								break;
@@ -240,6 +244,5 @@ public class LibApp {
 			}
 		}
 	}
-
 
 }

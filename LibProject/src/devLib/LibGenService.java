@@ -12,4 +12,6 @@ public interface LibGenService {
 	public List<Book> ocfList(String usrCode); // 대여중목록
 	public List<Book> bestList(); // 베스트목록
 	
+	public List<Book> allList(); // 테스트용 전체리스트
+	
 }

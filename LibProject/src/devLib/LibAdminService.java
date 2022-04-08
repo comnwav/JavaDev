@@ -12,6 +12,7 @@ public interface LibAdminService {
 	public void rmBook(String codeBook); // 도서 삭제
 	public void rentBook(String usrCode, String bookCode); // 도서 대여기능
 	public void backBook(Book book, LibUser user); // 반납된도서 입력
+	public void backBook2(Book book, LibUser user); // 연체자 반납도서 입력
 	
 	//
 	public Book getInfoBook(String codeBook);

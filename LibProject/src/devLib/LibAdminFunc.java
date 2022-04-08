@@ -129,7 +129,7 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 	public void memberRegi(LibUser usr) {
 
 		conn = getConnect();
-		String sql = "INSERT INTO usrlist ( usr_id,usr_pass,usr_code, usr_halt) VALUES (?, ?, usr_code.NEXTVAL, 0)";
+		String sql = "INSERT INTO usrlist ( usr_id,usr_pass,usr_code) VALUES (?, ?, usr_code.NEXTVAL)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, usr.getUsrId());
@@ -199,7 +199,15 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 	@Override
 	public LibUser getInforUser(String codeUser) {
 		conn = getConnect();
-		String sql = "select * from usrlist where usr_code = ?";
+		String sql = "SELECT\n"+
+				"    usr_id,\n"+
+				"    usr_pass,\n"+
+				"    usr_code,\n"+
+				"    halt_date,\n"+
+				"    trunc(halt_date - sysdate) as usr_halt\n"+
+				"FROM\n"+
+				"    usrlist\n"+
+				"where usr_code =?";
 		LibUser usr = new LibUser();
 
 		try {
@@ -211,8 +219,8 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 				usr.setUsrCode(rs.getString("usr_code"));
 				usr.setUsrId(rs.getString("usr_id"));
 				usr.setUsrPass(rs.getString("usr_pass"));
-				usr.setUsrHalt(rs.getLong("usr_halt"));
-
+				usr.setHaltDate(rs.getDate("halt_date"));
+				usr.setCalDay(rs.getLong("usr_halt"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -247,9 +255,36 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 	public void backBook(Book book, LibUser user) {
 		conn = getConnect();
 		
+		String sql = "UPDATE booklist\n"+
+				"SET\n"+
+				"    date_away = NULL,\n"+
+				"    date_back = NULL,\n"+
+				"    usr_code = NULL\n"+
+				"WHERE\n"+
+				"    code_book = ?";
+		
+		try {
+		
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, book.getCodeBook());
+			psmt.executeUpdate();
+		}
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+	}
+	
+	@Override
+	public void backBook2(Book book, LibUser user) {
+		conn = getConnect();
+		
 		String sql = "UPDATE usrlist\n"+
 				"SET\n"+
-				"    usr_halt = ?\n"+
+				"    halt_date = sysdate + ?\n"+
 				"WHERE\n"+
 				"    usr_code = ?";
 		
@@ -263,15 +298,16 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setLong(1, user.getUsrHalt());
+			psmt.setLong(1, user.getCalDay());
 			psmt.setString(2, book.getUsrCode());
+			System.out.println(book.getUsrCode());
 			psmt.executeUpdate();
 			
 			psmt = conn.prepareStatement(sql2);
 			psmt.setString(1, book.getCodeBook());
 			psmt.executeUpdate();
 		}
-
+		
 		catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -279,4 +315,5 @@ public class LibAdminFunc extends LibDao implements LibAdminService {
 		}
 		
 	}
+	
 }
